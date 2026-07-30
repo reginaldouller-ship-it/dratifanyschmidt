@@ -331,7 +331,7 @@
     @media (min-width: 900px) {
       .testi-card { flex: 0 0 280px; }
     }
-    .testi-dots { display: flex; flex-wrap: wrap; }
+    .testi-dots, .gallery-dots { display: flex; flex-wrap: wrap; }
     .testi-wrap { padding: 0 64px; }
     @media (max-width: 899px) {
       .testi-wrap { padding: 0 24px; }
@@ -469,11 +469,11 @@
     @media (min-width: 700px) {
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 56px; }
     }
+    /* Galeria: um paciente por vez em QUALQUER largura. No desktop o trilho
+       encolhe para retrato legível; setas e dots ficam em todas as larguras. */
+    .gallery-shell { position: relative; }
     @media (min-width: 900px) {
-      .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; overflow: visible; gap: 32px; }
-      .gallery-item { flex: unset; }
-      .gallery-dots { display: none; }
-      .gallery-arrow { display: none; }
+      .gallery-shell { max-width: 520px; margin: 0 auto; }
       .mobile-cta { display: none !important; }
     }
     @media (max-width: 899px) {
@@ -532,11 +532,9 @@
       text-align: center; margin-bottom: 14px;
     }
 
-    /* Micro-interações */
-    @media (hover: hover) and (min-width: 900px) {
-      .gallery-item { transition: transform 0.35s ease, box-shadow 0.35s ease; }
-      .gallery-item:hover { transform: translateY(-6px); box-shadow: 0 20px 44px rgba(0,0,0,0.35); }
-    }
+    /* Micro-interações (sem hover-lift na galeria: dentro de trilho com
+       overflow-x o translateY clipa a sombra, e o card já é superfície de
+       arrasto do antes/depois) */
     .gallery-arrow svg, .testi-arrow svg { transition: transform 0.2s ease; }
     .gallery-arrow:hover svg, .testi-arrow:hover svg { transform: scale(1.2); }
     .testi-card { transition: transform 0.35s ease; }
@@ -632,7 +630,7 @@
       </div>
     </div>
 
-    <div style="position:relative;">
+    <div class="gallery-shell">
     <div class="gallery-grid">
       <sc-for list="{{ cases }}" as="item" hint-placeholder-count="9">
         <div class="gallery-item" data-gallery-card="true" style="position:relative; aspect-ratio:4/5; overflow:hidden; border-radius:2px; cursor:ew-resize; touch-action:none; user-select:none;" sc-camel-on-pointer-down="{{ item.onPointerDown }}">
@@ -666,7 +664,7 @@
       </sc-for>
     </div>
 
-    <p style="max-width:640px; margin:36px auto 0; text-align:center; font-size:12px; line-height:1.6; color:rgba(244,240,233,0.5); font-weight:300;">Divulgação autorizada pelas usuárias. Esta imagem não representa, em hipótese alguma, garantia de resultado. Cada ser humano tem características anatômicas e fisiológicas únicas.</p>
+    <p style="max-width:640px; margin:36px auto 0; text-align:center; font-size:12px; line-height:1.6; color:rgba(244,240,233,0.5); font-weight:300;">Divulgação autorizada pelas pacientes. Esta imagem não representa, em hipótese alguma, garantia de resultado. Cada ser humano tem características anatômicas e fisiológicas únicas.</p>
   </section>
 
   <!-- MARQUEE (conteúdo manual — espelha os nomes de GROUPS; atualizar junto) -->
