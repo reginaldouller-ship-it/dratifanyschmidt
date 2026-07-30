@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>window.__resources = Object.assign({}, window.__resources, {
+  "https://unpkg.com/react@18.3.1/umd/react.production.min.js": "vendor/react.production.min.js",
+  "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "vendor/react-dom.production.min.js"
+});</script>
+<script src="vendor/dc-runtime.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+<x-dc>
+
+<helmet>
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <style>/* math */
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/bodoni-moda-400-italic-math.woff2") format('woff2');
+  unicode-range: U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A, U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346, U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6, U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043, U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-208E, U+2090-209C, U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121, U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2, U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319, U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1, U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB, U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE, U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;
+}
+/* symbols */
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/bodoni-moda-400-italic-symbols.woff2") format('woff2');
+  unicode-range: U+0001-000C, U+000E-001F, U+007F-009F, U+20DD-20E0, U+20E2-20E4, U+2150-218F, U+2190, U+2192, U+2194-2199, U+21AF, U+21E6-21F0, U+21F3, U+2218-2219, U+2299, U+22C4-22C6, U+2300-243F, U+2440-244A, U+2460-24FF, U+25A0-27BF, U+2800-28FF, U+2921-2922, U+2981, U+29BF, U+29EB, U+2B00-2BFF, U+4DC0-4DFF, U+FFF9-FFFB, U+10140-1018E, U+10190-1019C, U+101A0, U+101D0-101FD, U+102E0-102FB, U+10E60-10E7E, U+1D2C0-1D2D3, U+1D2E0-1D37F, U+1F000-1F0FF, U+1F100-1F1AD, U+1F1E6-1F1FF, U+1F30D-1F30F, U+1F315, U+1F31C, U+1F31E, U+1F320-1F32C, U+1F336, U+1F378, U+1F37D, U+1F382, U+1F393-1F39F, U+1F3A7-1F3A8, U+1F3AC-1F3AF, U+1F3C2, U+1F3C4-1F3C6, U+1F3CA-1F3CE, U+1F3D4-1F3E0, U+1F3ED, U+1F3F1-1F3F3, U+1F3F5-1F3F7, U+1F408, U+1F415, U+1F41F, U+1F426, U+1F43F, U+1F441-1F442, U+1F444, U+1F446-1F449, U+1F44C-1F44E, U+1F453, U+1F46A, U+1F47D, U+1F4A3, U+1F4B0, U+1F4B3, U+1F4B9, U+1F4BB, U+1F4BF, U+1F4C8-1F4CB, U+1F4D6, U+1F4DA, U+1F4DF, U+1F4E3-1F4E6, U+1F4EA-1F4ED, U+1F4F7, U+1F4F9-1F4FB, U+1F4FD-1F4FE, U+1F503, U+1F507-1F50B, U+1F50D, U+1F512-1F513, U+1F53E-1F54A, U+1F54F-1F5FA, U+1F610, U+1F650-1F67F, U+1F687, U+1F68D, U+1F691, U+1F694, U+1F698, U+1F6AD, U+1F6B2, U+1F6B9-1F6BA, U+1F6BC, U+1F6C6-1F6CF, U+1F6D3-1F6D7, U+1F6E0-1F6EA, U+1F6F0-1F6F3, U+1F6F7-1F6FC, U+1F700-1F7FF, U+1F800-1F80B, U+1F810-1F847, U+1F850-1F859, U+1F860-1F887, U+1F890-1F8AD, U+1F8B0-1F8BB, U+1F8C0-1F8C1, U+1F900-1F90B, U+1F93B, U+1F946, U+1F984, U+1F996, U+1F9E9, U+1FA00-1FA6F, U+1FA70-1FA7C, U+1FA80-1FA89, U+1FA8F-1FAC6, U+1FACE-1FADC, U+1FADF-1FAE9, U+1FAF0-1FAF8, U+1FB00-1FBFF;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/bodoni-moda-400-italic-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/bodoni-moda-400-italic-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* math */
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/bodoni-moda-400-math.woff2") format('woff2');
+  unicode-range: U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A, U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346, U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6, U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043, U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-208E, U+2090-209C, U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121, U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2, U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319, U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1, U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB, U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE, U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;
+}
+/* symbols */
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/bodoni-moda-400-symbols.woff2") format('woff2');
+  unicode-range: U+0001-000C, U+000E-001F, U+007F-009F, U+20DD-20E0, U+20E2-20E4, U+2150-218F, U+2190, U+2192, U+2194-2199, U+21AF, U+21E6-21F0, U+21F3, U+2218-2219, U+2299, U+22C4-22C6, U+2300-243F, U+2440-244A, U+2460-24FF, U+25A0-27BF, U+2800-28FF, U+2921-2922, U+2981, U+29BF, U+29EB, U+2B00-2BFF, U+4DC0-4DFF, U+FFF9-FFFB, U+10140-1018E, U+10190-1019C, U+101A0, U+101D0-101FD, U+102E0-102FB, U+10E60-10E7E, U+1D2C0-1D2D3, U+1D2E0-1D37F, U+1F000-1F0FF, U+1F100-1F1AD, U+1F1E6-1F1FF, U+1F30D-1F30F, U+1F315, U+1F31C, U+1F31E, U+1F320-1F32C, U+1F336, U+1F378, U+1F37D, U+1F382, U+1F393-1F39F, U+1F3A7-1F3A8, U+1F3AC-1F3AF, U+1F3C2, U+1F3C4-1F3C6, U+1F3CA-1F3CE, U+1F3D4-1F3E0, U+1F3ED, U+1F3F1-1F3F3, U+1F3F5-1F3F7, U+1F408, U+1F415, U+1F41F, U+1F426, U+1F43F, U+1F441-1F442, U+1F444, U+1F446-1F449, U+1F44C-1F44E, U+1F453, U+1F46A, U+1F47D, U+1F4A3, U+1F4B0, U+1F4B3, U+1F4B9, U+1F4BB, U+1F4BF, U+1F4C8-1F4CB, U+1F4D6, U+1F4DA, U+1F4DF, U+1F4E3-1F4E6, U+1F4EA-1F4ED, U+1F4F7, U+1F4F9-1F4FB, U+1F4FD-1F4FE, U+1F503, U+1F507-1F50B, U+1F50D, U+1F512-1F513, U+1F53E-1F54A, U+1F54F-1F5FA, U+1F610, U+1F650-1F67F, U+1F687, U+1F68D, U+1F691, U+1F694, U+1F698, U+1F6AD, U+1F6B2, U+1F6B9-1F6BA, U+1F6BC, U+1F6C6-1F6CF, U+1F6D3-1F6D7, U+1F6E0-1F6EA, U+1F6F0-1F6F3, U+1F6F7-1F6FC, U+1F700-1F7FF, U+1F800-1F80B, U+1F810-1F847, U+1F850-1F859, U+1F860-1F887, U+1F890-1F8AD, U+1F8B0-1F8BB, U+1F8C0-1F8C1, U+1F900-1F90B, U+1F93B, U+1F946, U+1F984, U+1F996, U+1F9E9, U+1FA00-1FA6F, U+1FA70-1FA7C, U+1FA80-1FA89, U+1FA8F-1FAC6, U+1FACE-1FADC, U+1FADF-1FAE9, U+1FAF0-1FAF8, U+1FB00-1FBFF;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/bodoni-moda-400-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Bodoni Moda';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/bodoni-moda-400-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("assets/fonts/montserrat-cyrillic-ext.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("assets/fonts/montserrat-cyrillic.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("assets/fonts/montserrat-vietnamese.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("assets/fonts/montserrat-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("assets/fonts/montserrat-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/montserrat-cyrillic-ext.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/montserrat-cyrillic.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/montserrat-vietnamese.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/montserrat-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("assets/fonts/montserrat-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/fonts/montserrat-cyrillic-ext.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/fonts/montserrat-cyrillic.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/fonts/montserrat-vietnamese.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/fonts/montserrat-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("assets/fonts/montserrat-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/fonts/montserrat-cyrillic-ext.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/fonts/montserrat-cyrillic.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/fonts/montserrat-vietnamese.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/fonts/montserrat-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("assets/fonts/montserrat-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+  <script src="vendor/image-slot.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Montserrat', sans-serif; -webkit-font-smoothing: antialiased; background:#442a1e; }
+    a { color: #f4f0e9; }
+    a:hover { color: rgba(244,240,233,0.75); }
+    .texture-dark, .texture-cafe, .hero-body { position: relative; }
+    .texture-dark { background-color: #442a1e; }
+    .texture-cafe { background-color: #2a1710; }
+    /* As maiúsculas dos atributos SVG vão percent-encodadas (base%46requency =
+       baseFrequency): o runtime x-dc roda CAMEL_ATTR_RE sobre o template
+       INTEIRO — inclusive strings de CSS — e reescreveria camelCase cru para
+       sc-camel-*, que não é atributo SVG e derruba o feTurbulence no default
+       (grão virava véu chapado). O %XX quebra a regex e o decoder de URL
+       devolve a maiúscula quando o browser carrega o SVG. */
+    .texture-dark::before, .texture-cafe::before, .hero-body::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' base%46requency='0.85' num%4Fctaves='3' stitch%54iles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      background-repeat: repeat;
+    }
+    /* grão também nos blocos claros — nada é chapado */
+    .texture-light { position: relative; }
+    .texture-light::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' base%46requency='0.85' num%4Fctaves='3' stitch%54iles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0.27 0 0 0 0 0.16 0 0 0 0 0.12 0 0 0 0.045 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      background-repeat: repeat;
+    }
+    .texture-light > * { position: relative; z-index: 1; }
+    .texture-dark > *, .texture-cafe > *, .hero-body > * { position: relative; z-index: 1; }
+    .hide-scrollbar { scrollbar-width: none; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .testi-track { display: flex; align-items: center; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 14px 4px 18px; }
+    .testi-card { flex: 0 0 80%; scroll-snap-align: center; }
+    .testi-card img { display: block; width: 100%; height: auto; object-fit: contain; }
+    @media (min-width: 900px) {
+      .testi-card { flex: 0 0 280px; }
+    }
+    .testi-dots { display: flex; flex-wrap: wrap; }
+    .testi-wrap { padding: 0 64px; }
+    @media (max-width: 899px) {
+      .testi-wrap { padding: 0 24px; }
+    }
+    .gallery-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 16px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .gallery-grid::-webkit-scrollbar { display: none; }
+    .gallery-item { flex: 0 0 100%; scroll-snap-align: center; }
+    /* HERO
+       Mobile: foto sangrando na tela inteira, tipografia sobre scrim.
+       Desktop (>=900px): split editorial — painel café à esquerda, retrato à
+       direita. A foto é retrato 2:3; esticá-la em tela larga cortava a
+       composição e jogava a copy creme em cima da parede bege (contraste
+       reprovado). O split resolve os dois. */
+    /* A foto é um retrato 2:3 com a modelo centralizada e parede bege clara ao
+       redor. Copy creme sobreposta só fecha contraste com scrim pesado, que
+       apaga o queixo e a boca dela. Então a copy nunca fica sobre a foto: no
+       mobile empilha (retrato em cima, painel café embaixo), no desktop divide
+       ao meio. Contraste 15:1 nos dois, rosto intacto. */
+    /* min-height, não height: em tela baixa (360x640) a copy é mais alta que a
+       viewport e altura travada cortava a linha final no overflow:hidden.
+       svh em vez de vh para a barra do navegador mobile não empurrar o CTA. */
+    .hero { position: relative; overflow: hidden; }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr; grid-template-rows: 1fr auto;
+      min-height: 100vh; min-height: 100svh;
+    }
+    /* A img é absoluta de propósito: em fluxo normal a altura intrínseca do
+       retrato (largura x 1.5) virava a altura da linha do grid e esticava o
+       hero muito além de 100svh. Absoluta ela não contribui tamanho nenhum e a
+       linha 1fr manda. */
+    .hero-media { position: relative; grid-row: 1; min-height: 30vh; overflow: hidden; }
+    .hero-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; display: block; }
+    /* Só protege o logo do header, que é creme e fica sobre a parede bege. */
+    .hero-scrim {
+      position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(to bottom, rgba(42,23,16,0.5) 0%, rgba(42,23,16,0) 20%);
+    }
+    .hero-body {
+      grid-row: 2; z-index: 2;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 36px 20px 40px; color: #f4f0e9; background-color: #2a1710;
+    }
+    .hero-eyebrow {
+      font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 300; color: rgba(244,240,233,0.72); margin: 0 0 20px;
+      line-height: 1.5;
+    }
+    /* Abaixo de ~400px o rótulo não cabe em uma linha; encolher o tracking
+       segura ele inteiro antes de deixar quebrar. */
+    @media (max-width: 400px) {
+      .hero-eyebrow { font-size: 11px; letter-spacing: 0.1em; }
+    }
+    .hero-title {
+      margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 400;
+      line-height: 1.02; letter-spacing: -0.02em;
+      /* Empilhado a linha usa a viewport toda; no split ela cabe em meia
+         viewport menos o padding, por isso o desktop tem escala própria lá
+         embaixo. Com 7vw dos dois lados "Cada rosto pede um" quebrava. */
+      font-size: clamp(28px, 8.5vw, 64px);
+    }
+    .hero-sub { margin: 24px 0 0; max-width: 440px; font-size: 18px; font-weight: 300; line-height: 1.5; }
+    .hero-cta {
+      display: inline-block; margin-top: 32px; width: fit-content;
+      font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+      background: #f4f0e9; color: #442a1e; padding: 16px 30px; border-radius: 2px;
+      text-decoration: none; font-weight: 500;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .hero-cta:hover { color: #442a1e; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.28); }
+    .hero-note { margin: 14px 0 0; font-size: 12px; font-weight: 300; color: rgba(244,240,233,0.6); }
+    @media (min-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; min-height: 100vh; }
+      .hero-media { grid-column: 2; grid-row: 1; min-height: 0; }
+      .hero-media img { object-position: 50% 50%; }
+      .hero-scrim { display: none; }
+      /* 48px de respiro no começo do split: a 900px a coluna tem só 450px e
+         64px de cada lado espremiam o título pra 3 linhas. */
+      .hero-body { grid-column: 1; grid-row: 1; padding: 96px 48px; }
+      .hero-title { font-size: clamp(34px, 4.2vw, 84px); }
+      .hero-sub { max-width: 400px; }
+    }
+    @media (min-width: 1200px) {
+      .hero-body { padding: 96px 64px; }
+    }
+    /* blur-in escalonado: o hero é a única seção sem reveal, e é a que mais
+       importa. */
+    @keyframes heroRise {
+      from { opacity: 0; transform: translateY(18px); filter: blur(6px); }
+      to { opacity: 1; transform: none; filter: blur(0); }
+    }
+    .hero-body > * { animation: heroRise 0.9s cubic-bezier(0.2,0.7,0.2,1) both; }
+    .hero-eyebrow { animation-delay: 0.15s; }
+    .hero-title { animation-delay: 0.28s; }
+    .hero-sub { animation-delay: 0.44s; }
+    .hero-cta { animation-delay: 0.58s; }
+    .hero-note { animation-delay: 0.70s; }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-body > * { animation: none; }
+      .hero-cta:hover { transform: none; }
+    }
+    .float-cta { position: fixed; bottom: 24px; right: 24px; z-index: 60; display: flex; align-items: center; gap: 10px; background: #9d3a56; color: #f4f0e9; border-radius: 999px; padding: 14px 24px; box-shadow: 0 6px 24px rgba(157,58,86,0.35); text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .float-cta:hover { transform: scale(1.05); color: #f4f0e9; box-shadow: 0 10px 32px rgba(157,58,86,0.45); }
+    @media (max-width: 600px) {
+      .float-cta { bottom: 16px; right: 16px; }
+    }
+    .gallery-arrow { display: flex; }
+    .frentes { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 48px; align-items: start; }
+    .divisor { background: #9d3a56; opacity: 1; width: 1px; height: 100%; }
+    @media (max-width: 768px) {
+      .frentes { grid-template-columns: 1fr; }
+      .divisor { width: 100%; height: 1px; }
+    }
+    .sec-eu-faco { padding: 88px 24px; }
+    @media (min-width: 900px) {
+      .sec-eu-faco { padding: 88px 64px; }
+    }
+    .titulo-encaixe { text-align: center; line-height: 0.92; }
+    .titulo-encaixe .linha1 { display: block; }
+    .titulo-encaixe .linha2 { display: block; font-style: italic; font-size: 1.05em; margin-left: 0; margin-top: 0; }
+    .proc-card { border: 1px solid rgba(68,42,30,0.15); border-radius: 14px; padding: 20px; cursor: pointer; margin-bottom: 12px; transition: background 0.2s ease, border-color 0.2s ease; }
+    .proc-card:hover { border-color: rgba(157,58,86,0.35); }
+    .proc-card.is-open { background: rgba(157,58,86,0.05); border-color: rgba(157,58,86,0.45); }
+    .card-cabecalho { position: relative; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 48px; min-height: 32px; }
+    .card-cabecalho .proc-name { word-wrap: break-word; overflow-wrap: break-word; white-space: normal; }
+    .card-cabecalho .seta { position: absolute; right: 0; top: 50%; transform: translateY(-50%); }
+    .proc-chevron { flex-shrink: 0; transition: transform 0.3s ease; }
+    .proc-chevron.is-open { transform: translateY(-50%) rotate(180deg); }
+    .proc-desc-wrap { overflow: hidden; transition: max-height 0.3s ease, opacity 0.3s ease; text-align: center; }
+    .proc-desc-wrap p { max-width: 90%; margin-left: auto; margin-right: auto; }
+    .about-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
+    @media (min-width: 900px) {
+      .about-grid { grid-template-columns: 1fr 1fr; align-items: stretch; }
+    }
+    .footer-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
+    @media (min-width: 700px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 56px; }
+    }
+    @media (min-width: 900px) {
+      .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; overflow: visible; gap: 32px; }
+      .gallery-item { flex: unset; }
+      .gallery-dots { display: none; }
+      .gallery-arrow { display: none; }
+      .mobile-cta { display: none !important; }
+    }
+    @media (max-width: 899px) {
+      .desktop-cta { display: none !important; }
+    }
+
+    /* ═══ Sistema do redesign ═══
+       Tese de cor: vinho (#9d3a56) é o acento de AÇÃO e estado vivo — CTAs
+       persistentes, hovers, estados abertos, itálicos de título em fundo claro.
+       Em fundo escuro vinho reprova contraste de texto (2.6:1), então lá ele é
+       só decorativo (faixa, régua) ou fundo de bloco com texto creme (5.8:1). */
+    :root { --marrom: #442a1e; --cafe: #2a1710; --creme: #f4f0e9; --vinho: #9d3a56; }
+    ::selection { background: var(--vinho); color: var(--creme); }
+    .linha2-vinho { color: var(--vinho); }
+
+    /* Eyebrow padronizado: o rótulo de prontuário da colisão editorial,
+       presente em toda seção. Régua curta embaixo — vinho no claro, creme
+       apagado no escuro (vinho 1px sobre marrom some). */
+    .sec-eyebrow {
+      font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 300; text-align: center; margin: 0 0 14px;
+    }
+    .sec-eyebrow::after { content: ""; display: block; width: 26px; height: 1px; margin: 12px auto 0; }
+    .sec-eyebrow--dark { color: rgba(244,240,233,0.6); }
+    .sec-eyebrow--dark::after { background: rgba(244,240,233,0.35); }
+    .sec-eyebrow--light { color: rgba(68,42,30,0.6); }
+    .sec-eyebrow--light::after { background: var(--vinho); }
+
+    /* Reveal por classe (o JS só liga "is-on"); .reveal-stagger escalona os
+       filhos diretos — um load orquestrado por seção em vez de fade grosseiro. */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.is-on { opacity: 1; transform: none; }
+    .reveal-stagger > * { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal-stagger.is-on > * { opacity: 1; transform: none; }
+    .reveal-stagger.is-on > :nth-child(2) { transition-delay: 0.12s; }
+    .reveal-stagger.is-on > :nth-child(3) { transition-delay: 0.24s; }
+    .reveal-stagger.is-on > :nth-child(4) { transition-delay: 0.36s; }
+
+    /* Marquee: o momento dominante do acento — faixa vinho, Bodoni itálica,
+       movimento contínuo lento. Cada metade repete os itens 2x para nunca
+       abrir fresta em tela ultrawide; -50% = uma metade exata. */
+    .marquee { overflow: hidden; background: var(--vinho); padding: 22px 0; }
+    .marquee-track { display: flex; width: max-content; animation: marqueeSlide 44s linear infinite; will-change: transform; }
+    .marquee-half { display: flex; align-items: baseline; gap: 40px; padding-right: 40px; }
+    .marquee-half span {
+      font-family: 'Bodoni Moda', serif; font-style: italic; font-weight: 400;
+      font-size: clamp(20px, 2.6vw, 30px); color: var(--creme); white-space: nowrap;
+    }
+    .marquee-half .mq-dot { font-style: normal; opacity: 0.5; }
+    @keyframes marqueeSlide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* Numeral editorial dos grupos de procedimentos */
+    .grupo-num {
+      font-family: 'Bodoni Moda', serif; font-style: italic; font-weight: 400;
+      font-size: 40px; line-height: 1; color: var(--vinho);
+      text-align: center; margin-bottom: 14px;
+    }
+
+    /* Micro-interações */
+    @media (hover: hover) and (min-width: 900px) {
+      .gallery-item { transition: transform 0.35s ease, box-shadow 0.35s ease; }
+      .gallery-item:hover { transform: translateY(-6px); box-shadow: 0 20px 44px rgba(0,0,0,0.35); }
+    }
+    .gallery-arrow svg, .testi-arrow svg { transition: transform 0.2s ease; }
+    .gallery-arrow:hover svg, .testi-arrow:hover svg { transform: scale(1.2); }
+    .testi-card { transition: transform 0.35s ease; }
+    .testi-card:nth-child(odd) { transform: rotate(-1.3deg); }
+    .testi-card:nth-child(even) { transform: rotate(1.1deg); }
+    .testi-card:hover { transform: rotate(0deg); }
+    .testi-card img { filter: drop-shadow(0 12px 22px rgba(68,42,30,0.16)); }
+
+    /* CTAs — repouso neutro, ação vinho */
+    .header-cta {
+      font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+      background: var(--marrom); color: var(--creme); padding: 11px 20px;
+      border-radius: 2px; text-decoration: none; font-weight: 300;
+      transition: background 0.25s ease;
+    }
+    .header-cta:hover { background: var(--vinho); color: var(--creme); }
+    .pre-cta-line {
+      margin: 0 0 28px; font-family: 'Bodoni Moda', serif; font-style: italic;
+      font-weight: 400; font-size: clamp(26px, 4.5vw, 44px); line-height: 1.2;
+      color: var(--creme); text-align: center; text-wrap: balance;
+      text-shadow: 0 2px 24px rgba(42,23,16,0.45);
+    }
+    .pre-cta-btn {
+      display: inline-block; font-size: 13px; letter-spacing: 0.2em;
+      text-transform: uppercase; background: var(--creme); color: var(--marrom);
+      padding: 18px 34px; border-radius: 2px; text-decoration: none; font-weight: 500;
+      transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
+    }
+    .pre-cta-btn:hover { background: var(--vinho); color: var(--creme); transform: translateY(-2px); }
+    .sticky-cta {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 60; display: block;
+      text-align: center; background: var(--vinho); color: var(--creme);
+      padding: 16px 16px calc(16px + env(safe-area-inset-bottom, 0px));
+      font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase;
+      text-decoration: none; font-weight: 500;
+    }
+    .sticky-cta:hover { color: var(--creme); }
+
+    /* Atmosfera do hero: bloom vinho sutil atrás da copy + sublinhado vinho
+       no itálico (a palavra segue creme 15:1; o traço é decorativo). */
+    .hero-body { background-image: radial-gradient(120% 90% at 10% 105%, rgba(157,58,86,0.16), transparent 55%); }
+    .hero-title em {
+      text-decoration: underline; text-decoration-color: var(--vinho);
+      text-decoration-thickness: 2px; text-underline-offset: clamp(4px, 0.09em, 9px);
+    }
+
+    /* Lede editorial do Sobre */
+    .sobre-lede {
+      font-family: 'Bodoni Moda', serif; font-style: italic; font-weight: 400;
+      font-size: clamp(20px, 2.3vw, 24px); line-height: 1.55; color: var(--marrom);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; }
+      .reveal, .reveal-stagger > * { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .testi-card:nth-child(odd), .testi-card:nth-child(even) { transform: none; }
+      .gallery-item:hover, .pre-cta-btn:hover { transform: none; }
+    }
+  </style>
+</helmet>
+
+<div style="background:#442a1e; color:#f4f0e9; overflow-x:hidden;">
+
+  <!-- HEADER -->
+  <header style="position:fixed; top:0; left:0; right:0; z-index:50; height:72px; display:flex; align-items:center; justify-content:space-between; padding:0 24px; background: {{ headerBg }}; backdrop-filter: {{ headerBlur }}; border-bottom: {{ headerBorder }}; transition:background 0.3s ease, border-color 0.3s ease;">
+    <img src="{{ headerLogo }}" alt="Tifany Schmidt" style="height:28px; width:auto; transition:opacity 0.3s ease;">
+    <a href="{{ whatsappUrl }}" target="_blank" rel="noopener" class="header-cta">Agendar avaliação</a>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="hero-media">
+        <img src="assets/foto-hero.jpg" alt="Dra. Tifany Schmidt" sc-camel-fetch-priority="high" decoding="async">
+        <div class="hero-scrim"></div>
+      </div>
+      <div class="hero-body">
+        <p class="hero-eyebrow">Biomedicina estética · Balneário Camboriú</p>
+        <h1 class="hero-title">Cada rosto pede um<br>protocolo <em style="font-style:italic;">diferente.</em></h1>
+        <p class="hero-sub">Avaliação individual e tratamentos faciais. Protocolo montado para o seu rosto.</p>
+        <a class="hero-cta" href="{{ whatsappUrl }}" target="_blank" rel="noopener">Agendar avaliação</a>
+        <p class="hero-note">Atendimento com hora marcada</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="texture-dark reveal reveal-stagger" style="padding:88px 20px 56px;">
+    <div style="text-align:center; margin-bottom:36px;">
+      <div class="sec-eyebrow sec-eyebrow--dark">Resultados reais</div>
+      <div style="text-align:center;">
+        <h2 class="titulo-encaixe" style="margin:0; font-family:'Bodoni Moda', serif; font-weight:400; font-size:clamp(28px,4vw,44px);"><span class="linha1">Rostos que</span><span class="linha2">passaram por aqui</span></h2>
+      </div>
+    </div>
+
+    <div style="position:relative;">
+    <div class="gallery-grid">
+      <sc-for list="{{ cases }}" as="item" hint-placeholder-count="9">
+        <div class="gallery-item" data-gallery-card="true" style="position:relative; aspect-ratio:4/5; overflow:hidden; border-radius:2px; cursor:ew-resize; touch-action:none; user-select:none;" sc-camel-on-pointer-down="{{ item.onPointerDown }}">
+          <img src="{{ item.depois }}" alt="Depois" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; pointer-events:none;">
+          <img src="{{ item.antes }}" alt="Antes" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; pointer-events:none; clip-path: {{ item.clip }};">
+
+          <div style="position:absolute; top:12px; left:12px; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#f4f0e9; background:rgba(68,42,30,0.6); padding:6px 10px;">Antes</div>
+          <div style="position:absolute; top:12px; right:12px; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#f4f0e9; background:rgba(68,42,30,0.8); padding:6px 10px;">Depois</div>
+
+          <div style="position:absolute; top:0; bottom:0; width:2px; background:#9d3a56; left: {{ item.pos }}%; transform:translateX(-1px); transition: {{ item.transition }}; pointer-events:none;"></div>
+          <div style="position:absolute; top:50%; width:38px; height:38px; border-radius:50%; background:#9d3a56; left: {{ item.pos }}%; transform:translate(-50%,-50%); transition: {{ item.transition }}; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 10px rgba(0,0,0,0.35); pointer-events:none;">
+            <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none">
+              <path d="M8 7L3 12L8 17" stroke="#f4f0e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M16 7L21 12L16 17" stroke="#f4f0e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <button sc-camel-on-click="{{ prevCase }}" aria-label="Caso anterior" class="gallery-arrow" style="position:absolute; left:4px; top:50%; transform:translateY(-50%); width:40px; height:40px; border-radius:50%; border:none; background:rgba(244,240,233,0.85); align-items:center; justify-content:center; cursor:pointer; z-index:5;">
+      <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none"><path d="M15 6L9 12L15 18" stroke="#442a1e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </button>
+    <button sc-camel-on-click="{{ nextCase }}" aria-label="Próximo caso" class="gallery-arrow" style="position:absolute; right:4px; top:50%; transform:translateY(-50%); width:40px; height:40px; border-radius:50%; border:none; background:rgba(244,240,233,0.85); align-items:center; justify-content:center; cursor:pointer; z-index:5;">
+      <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="#442a1e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </button>
+    </div>
+
+    <div class="gallery-dots" style="justify-content:center; gap:8px; margin-top:16px;">
+      <sc-for list="{{ dots }}" as="dot" hint-placeholder-count="9">
+        <div style="width:6px; height:6px; border-radius:50%; background: {{ dot.color }};"></div>
+      </sc-for>
+    </div>
+
+    <p style="max-width:640px; margin:36px auto 0; text-align:center; font-size:12px; line-height:1.6; color:rgba(244,240,233,0.5); font-weight:300;">Divulgação autorizada pelas usuárias. Esta imagem não representa, em hipótese alguma, garantia de resultado. Cada ser humano tem características anatômicas e fisiológicas únicas.</p>
+  </section>
+
+  <!-- MARQUEE (conteúdo manual — espelha os nomes de GROUPS; atualizar junto) -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-half">
+        <span>Preenchimentos faciais</span><span class="mq-dot">·</span><span>Toxina botulínica</span><span class="mq-dot">·</span><span>Bioestimuladores de colágeno</span><span class="mq-dot">·</span><span>Limpeza de pele profunda</span><span class="mq-dot">·</span><span>Microagulhamento</span><span class="mq-dot">·</span><span>Dermaplaning</span><span class="mq-dot">·</span><span>Preenchimentos faciais</span><span class="mq-dot">·</span><span>Toxina botulínica</span><span class="mq-dot">·</span><span>Bioestimuladores de colágeno</span><span class="mq-dot">·</span><span>Limpeza de pele profunda</span><span class="mq-dot">·</span><span>Microagulhamento</span><span class="mq-dot">·</span><span>Dermaplaning</span><span class="mq-dot">·</span>
+      </div>
+      <div class="marquee-half">
+        <span>Preenchimentos faciais</span><span class="mq-dot">·</span><span>Toxina botulínica</span><span class="mq-dot">·</span><span>Bioestimuladores de colágeno</span><span class="mq-dot">·</span><span>Limpeza de pele profunda</span><span class="mq-dot">·</span><span>Microagulhamento</span><span class="mq-dot">·</span><span>Dermaplaning</span><span class="mq-dot">·</span><span>Preenchimentos faciais</span><span class="mq-dot">·</span><span>Toxina botulínica</span><span class="mq-dot">·</span><span>Bioestimuladores de colágeno</span><span class="mq-dot">·</span><span>Limpeza de pele profunda</span><span class="mq-dot">·</span><span>Microagulhamento</span><span class="mq-dot">·</span><span>Dermaplaning</span><span class="mq-dot">·</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- O QUE EU FAÇO -->
+  <section class="sec-eu-faco texture-light reveal reveal-stagger" style="background:#f4f0e9; color:#442a1e;">
+    <div style="max-width:1100px; margin:0 auto 64px;">
+      <div class="sec-eyebrow sec-eyebrow--light">Procedimentos</div>
+      <h2 class="titulo-encaixe" style="margin:0; font-family:'Bodoni Moda', serif; font-weight:400; font-size:clamp(32px,5.5vw,64px); color:#442a1e;"><span class="linha1">O QUE</span><span class="linha2 linha2-vinho">eu faço</span></h2>
+    </div>
+    <div class="frentes" style="max-width:1100px; margin:0 auto;">
+      <div>
+        <div class="grupo-num">{{ groups.0.label }}</div>
+        <h3 class="titulo-encaixe" style="margin:0 0 32px; font-family:'Bodoni Moda', serif; font-weight:400; font-size:40px; color:#442a1e;"><span class="linha1">Harmonização</span><span class="linha2 linha2-vinho">facial</span></h3>
+        <sc-for list="{{ groups.0.items }}" as="it" hint-placeholder-count="4">
+          <div class="proc-card {{ it.openClass }}" sc-camel-on-click="{{ it.toggle }}">
+            <div class="card-cabecalho">
+              <div class="proc-name" style="font-family:'Bodoni Moda', serif; font-weight:400; font-size:22px; color:#442a1e;">{{ it.name }}</div>
+              <svg class="proc-chevron seta {{ it.openClass }}" width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#9d3a56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </div>
+            <div class="proc-desc-wrap" style="max-height: {{ it.maxHeight }}; opacity: {{ it.descOpacity }};">
+              <p style="margin-top:12px; font-weight:300; font-size:15px; line-height:1.6; color:rgba(68,42,30,0.8);">{{ it.detail }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div class="divisor"></div>
+      <div>
+        <div class="grupo-num">{{ groups.1.label }}</div>
+        <h3 class="titulo-encaixe" style="margin:0 0 32px; font-family:'Bodoni Moda', serif; font-weight:400; font-size:40px; color:#442a1e;"><span class="linha1">Tratamentos</span><span class="linha2 linha2-vinho">de pele</span></h3>
+        <sc-for list="{{ groups.1.items }}" as="it" hint-placeholder-count="3">
+          <div class="proc-card {{ it.openClass }}" sc-camel-on-click="{{ it.toggle }}">
+            <div class="card-cabecalho">
+              <div class="proc-name" style="font-family:'Bodoni Moda', serif; font-weight:400; font-size:22px; color:#442a1e;">{{ it.name }}</div>
+              <svg class="proc-chevron seta {{ it.openClass }}" width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#9d3a56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </div>
+            <div class="proc-desc-wrap" style="max-height: {{ it.maxHeight }}; opacity: {{ it.descOpacity }};">
+              <p style="margin-top:12px; font-weight:300; font-size:15px; line-height:1.6; color:rgba(68,42,30,0.8);">{{ it.detail }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="texture-dark reveal reveal-stagger" style="padding:88px 20px;">
+    <div style="max-width:760px; margin:0 auto 64px;">
+      <div class="sec-eyebrow sec-eyebrow--dark">O método</div>
+      <h2 class="titulo-encaixe" style="margin:0; font-family:'Bodoni Moda', serif; font-weight:400; font-size:clamp(28px,4.5vw,48px);"><span class="linha1">Como</span><span class="linha2">funciona</span></h2>
+    </div>
+    <div style="position:relative; max-width:760px; margin:0 auto;">
+      <div style="position:absolute; left:28px; top:0; bottom:0; width:1px; background:rgba(244,240,233,0.15);"></div>
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+        <div style="position:relative; margin-left: {{ s.offset }}; padding:0 0 88px 72px;">
+          <div style="position:absolute; left:-40px; top:-56px; font-family:'Bodoni Moda', serif; font-style:italic; font-weight:400; font-size:clamp(120px,16vw,190px); color:rgba(244,240,233,0.09); line-height:1; user-select:none; pointer-events:none; z-index:0;">{{ s.n }}</div>
+          <div style="position:relative; z-index:1;">
+            <h3 style="margin:0 0 12px; font-family:'Bodoni Moda', serif; font-weight:400; font-size:26px;">{{ s.title }}</h3>
+            <p style="margin:0; font-weight:300; font-size:16px; line-height:1.7; color:rgba(244,240,233,0.75); max-width:440px;">{{ s.desc }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="texture-light reveal" style="background:#f4f0e9; color:#442a1e;">
+    <div class="about-grid">
+      <div style="width:100%; min-height:340px; overflow:hidden;">
+        <img src="assets/foto-sobre.jpg" alt="Dra. Tifany Schmidt" style="width:100%; height:100%; object-fit:cover; display:block;">
+      </div>
+      <div style="display:flex; flex-direction:column; justify-content:center; padding:56px 20px;">
+        <div class="sec-eyebrow sec-eyebrow--light">Dra. Tifany Schmidt</div>
+        <h2 class="titulo-encaixe" style="margin:0 0 32px; font-family:'Bodoni Moda', serif; font-weight:400; font-size:clamp(28px,4.5vw,48px); color:#442a1e;"><span class="linha1">Quem está</span><span class="linha2 linha2-vinho">do outro lado</span></h2>
+        <p class="sobre-lede" style="margin:0 0 20px; max-width:480px;">Eu sempre fui a menina que gostava de se cuidar. Muito antes de saber que existia profissão pra isso, eu já passava horas testando creme, olhando a pele no espelho, tentando entender o que mudava e por quê.</p>
+        <p style="margin:0; font-weight:300; font-size:18px; line-height:1.6; color:#442a1e; max-width:480px;">Virei biomédica esteta porque quis entender o que acontece embaixo da pele, não só o que aparece em cima dela. É isso que eu levo pra cada atendimento. Gosto de explicar, gosto que você entenda o que estou fazendo, e não indico nada que eu não indicaria pra mim.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="texture-light reveal reveal-stagger" style="background:#f4f0e9; color:#442a1e; padding:88px 20px;">
+    <div style="max-width:760px; margin:0 auto 48px;">
+      <div class="sec-eyebrow sec-eyebrow--light">Direto do WhatsApp</div>
+      <h2 class="titulo-encaixe" style="margin:0; font-family:'Bodoni Moda', serif; font-weight:400; font-size:clamp(28px,4.5vw,48px); color:#442a1e;"><span class="linha1">Nas palavras</span><span class="linha2 linha2-vinho">de quem já passou por aqui</span></h2>
+    </div>
+    <div class="testi-wrap" style="position:relative; max-width:1080px; margin:0 auto;">
+      <div class="testi-track hide-scrollbar">
+        <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="6">
+          <div class="testi-card">
+            <img src="{{ t.src }}" alt="Depoimento de paciente" style="width:100%; height:auto; display:block; object-fit:contain;">
+          </div>
+        </sc-for>
+      </div>
+      <button sc-camel-on-click="{{ prevTestimonial }}" aria-label="Depoimento anterior" class="testi-arrow" style="position:absolute; left:16px; top:50%; transform:translateY(-50%); width:40px; height:40px; border-radius:50%; border:none; background:#442a1e; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:5;">
+        <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none"><path d="M15 6L9 12L15 18" stroke="#f4f0e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </button>
+      <button sc-camel-on-click="{{ nextTestimonial }}" aria-label="Próximo depoimento" class="testi-arrow" style="position:absolute; right:16px; top:50%; transform:translateY(-50%); width:40px; height:40px; border-radius:50%; border:none; background:#442a1e; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:5;">
+        <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="#f4f0e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </button>
+    </div>
+    <div class="testi-dots" style="justify-content:center; gap:8px; margin-top:16px;">
+      <sc-for list="{{ testimonialDots }}" as="dot" hint-placeholder-count="6">
+        <div style="width:6px; height:6px; border-radius:50%; background: {{ dot.color }};"></div>
+      </sc-for>
+    </div>
+    <p style="max-width:520px; margin:24px auto 0; text-align:center; font-size:12px; line-height:1.6; color:rgba(68,42,30,0.5); font-weight:300;">Depoimentos reais de pacientes, publicados com autorização.</p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="texture-dark reveal reveal-stagger" style="color:#f4f0e9; padding:88px 20px;">
+    <div style="max-width:720px; margin:0 auto 36px;">
+      <div class="sec-eyebrow sec-eyebrow--dark">Antes de agendar</div>
+      <h2 class="titulo-encaixe" style="margin:0; font-family:'Bodoni Moda', serif; font-weight:400; font-size:clamp(28px,4.5vw,48px); color:#f4f0e9;"><span class="linha1">Perguntas</span><span class="linha2">frequentes</span></h2>
+    </div>
+    <div style="max-width:720px; margin:0 auto;">
+      <sc-for list="{{ faqItems }}" as="f" hint-placeholder-count="6">
+        <div style="border-bottom:1px solid rgba(244,240,233,0.15);">
+          <div sc-camel-on-click="{{ f.toggle }}" style="display:flex; justify-content:space-between; align-items:center; padding:22px 4px; cursor:pointer; gap:16px;">
+            <span style="font-family:'Bodoni Moda', serif; font-weight:400; font-size:20px; color:#f4f0e9;">{{ f.q }}</span>
+            <span style="font-size:22px; font-weight:300; color:#f4f0e9; flex-shrink:0;">{{ f.symbol }}</span>
+          </div>
+          <div style="max-height: {{ f.maxHeight }}; overflow:hidden; transition:max-height 0.35s ease;">
+            <p style="margin:0 4px 22px; font-weight:300; font-size:15px; line-height:1.6; color:rgba(244,240,233,0.75); max-width:600px;">{{ f.a }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- FOTO ANTES DO BOTAO FINAL -->
+  <section class="reveal" style="position:relative; height:60vh; min-height:380px; overflow:hidden;">
+    <img src="assets/foto-antes-do-botao-final.jpg" alt="Dra. Tifany Schmidt" style="width:100%; height:100%; object-fit:cover; display:block;">
+    <div style="position:absolute; inset:0; background:radial-gradient(120% 120% at 50% 50%, rgba(68,42,30,0.55) 30%, rgba(68,42,30,0.80) 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px;">
+      <p class="pre-cta-line">O resultado é construído,<br>não comprado.</p>
+      <a href="{{ whatsappUrl }}" target="_blank" rel="noopener" class="pre-cta-btn">Agendar avaliação</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="texture-cafe" style="padding:64px 20px 96px; font-weight:300; font-size:15px; line-height:1.8;">
+    <div style="max-width:760px; margin:0 auto 44px;">
+      <img src="assets/logo-lettering-creme.png" alt="Tifany Schmidt" style="height:30px; width:auto; display:block;">
+    </div>
+    <div class="footer-grid" style="max-width:760px; margin:0 auto;">
+      <div>
+        <h3 style="margin:0 0 14px; font-family:'Bodoni Moda', serif; font-weight:400; font-size:20px; color:#f4f0e9;">Endereço</h3>
+        <p style="margin:0 0 4px;">Rua 700, nº 489, sala 2404</p>
+        <p style="margin:0 0 4px;">Ed. Benvenutti Business Center -- C.Cliniq</p>
+        <p style="margin:0 0 4px;">Centro, Balneário Camboriú/SC</p>
+        <p style="margin:0;">CEP 88330-620</p>
+      </div>
+      <div>
+        <h3 style="margin:0 0 14px; font-family:'Bodoni Moda', serif; font-weight:400; font-size:20px; color:#f4f0e9;">Contato</h3>
+        <p style="margin:0 0 4px;">WhatsApp <a href="{{ whatsappUrl }}" target="_blank" rel="noopener">(47) 99772-2437</a></p>
+        <p style="margin:0 0 4px;">Instagram <a href="{{ instagramUrl }}" target="_blank" rel="noopener">@dratifanyschmidt</a></p>
+        <p style="margin:0;">Atendimento apenas com horário agendado</p>
+      </div>
+    </div>
+    <div style="max-width:760px; margin:40px auto 20px; border-top:1px solid rgba(244,240,233,0.2);"></div>
+    <p style="max-width:760px; margin:0 auto; text-align:center; color:rgba(244,240,233,0.75); font-size:13px;">Dra. Tifany Schmidt · Biomédica Esteta · CRBM-5: 014010</p>
+  </footer>
+
+  <!-- MOBILE STICKY WHATSAPP -->
+  <a href="{{ whatsappUrl }}" target="_blank" rel="noopener" class="mobile-cta sticky-cta">Agendar pelo WhatsApp</a>
+
+  <!-- DESKTOP FLOAT WHATSAPP (usa o .float-cta que estava órfão no CSS) -->
+  <a href="{{ whatsappUrl }}" target="_blank" rel="noopener" class="float-cta desktop-cta" aria-label="Agendar avaliação pelo WhatsApp">
+    <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none"><path d="M21 12a9 9 0 0 1-13.1 8L3 21l1-4.9A9 9 0 1 1 21 12Z" stroke="#f4f0e9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8.5 12h.01M12 12h.01M15.5 12h.01" stroke="#f4f0e9" stroke-width="2.4" stroke-linecap="round"></path></svg>
+    <span style="font-size:12px; letter-spacing:0.15em; text-transform:uppercase; font-weight:500;">Agendar avaliação</span>
+  </a>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script="">
+const WHATSAPP_URL = "https://wa.me/5547997722437?text=Oi%20Dra.%20Tifany!%20Quero%20agendar%20uma%20avalia%C3%A7%C3%A3o";
+const INSTAGRAM_URL = "https://instagram.com/dratifanyschmidt";
+
+const CASE_FILES = ["01","02","03","04","05","06","07","08","09"];
+
+const GROUPS = [
+  { label: "01", title: "Harmonização facial", items: [
+    { id: "p2", name: "Preenchimentos faciais", detail: "Ácido hialurônico para repor volume e redefinir contornos, incluindo preenchimento labial, malar, mento e olheiras. Sempre respeitando as proporções do seu rosto." },
+    { id: "p3", name: "Toxina botulínica", detail: "Relaxa os músculos responsáveis pelas rugas de expressão, como testa, glabela e pés de galinha. O efeito é temporário." },
+    { id: "p4", name: "Bioestimuladores de colágeno", detail: "Estimulam a sua própria pele a produzir colágeno, melhorando firmeza e qualidade ao longo das semanas." },
+  ] },
+  { label: "02", title: "Tratamentos de pele", items: [
+    { id: "p5", name: "Limpeza de pele profunda", detail: "Higienização completa, extração de cravos e desobstrução dos poros." },
+    { id: "p7", name: "Microagulhamento", detail: "Microperfurações que estimulam colágeno, indicadas para cicatrizes, poros dilatados e firmeza." },
+    { id: "p8", name: "Dermaplaning", detail: "Remoção da camada de células mortas e dos pelos finos do rosto com lâmina, deixando a pele lisa e a maquiagem mais uniforme." },
+  ] },
+];
+
+const STEPS = [
+  { n: "1", title: "Avaliação", desc: "Conversamos sobre seus objetivos e avalio sua pele antes de qualquer indicação. Nenhum procedimento é marcado no mesmo dia da primeira conversa.", offset: "0px" },
+  { n: "2", title: "Protocolo", desc: "Monto um plano com o que faz sentido para o seu caso, com prazos realistas. Você sai sabendo quantas sessões serão necessárias e por quê.", offset: "56px" },
+  { n: "3", title: "Acompanhamento", desc: "Acompanho a evolução e ajusto o protocolo ao longo das sessões. O resultado é construído, não comprado.", offset: "20px" },
+];
+
+const FAQS = [
+  { id: "q1", q: "Preciso de avaliação antes do procedimento?", a: "Sim, sempre. É nela que definimos se o procedimento é indicado para você." },
+  { id: "q2", q: "Dói?", a: "Usamos anestésico tópico. A maioria das pacientes relata desconforto leve." },
+  { id: "q3", q: "Quanto tempo até ver resultado?", a: "Varia por procedimento e por pessoa. Explico os prazos na avaliação." },
+  { id: "q4", q: "Preciso me afastar das atividades?", a: "Depende do protocolo. Oriento tudo antes." },
+  { id: "q5", q: "Quais as formas de pagamento?", a: "Dinheiro, Pix, débito e crédito." },
+  { id: "q6", q: "Vocês atendem em qualquer horário?", a: "O atendimento é sempre com horário marcado, e a gente encaixa o melhor horário para você. Fale comigo no WhatsApp que a gente resolve." },
+];
+
+function getRes(id, fallback) {
+  return (typeof window !== "undefined" && window.__resources && window.__resources[id]) || fallback;
+}
+
+const TESTIMONIALS = [
+  getRes("balao1", "assets/balao-01-atendimento.png"),
+  getRes("balao2", "assets/balao-02-toxina.png"),
+  getRes("balao3", "assets/balao-03-limpeza.png"),
+  getRes("balao4", "assets/balao-04-acolhimento.png"),
+  getRes("balao5", "assets/balao-05-melasma.png"),
+  getRes("balao6", "assets/balao-06-recomendacao.png"),
+];
+
+class Component extends DCLogic {
+  state = {
+    positions: CASE_FILES.map(() => 50),
+    draggingIndex: null,
+    faqOpen: null,
+    activeCase: 0,
+    scrolled: false,
+    openProc: { 0: null, 1: null },
+    activeTestimonial: 0,
+  };
+
+  componentDidMount() {
+    this._onScroll = () => {
+      const scrolled = window.scrollY > 40;
+      if (scrolled !== this.state.scrolled) this.setState({ scrolled });
+    };
+    window.addEventListener("scroll", this._onScroll, { passive: true });
+    this._introTimers = [
+      setTimeout(() => this.setState({ positions: this.state.positions.map(() => 32) }), 400),
+      setTimeout(() => this.setState({ positions: this.state.positions.map(() => 68) }), 1050),
+      setTimeout(() => this.setState({ positions: this.state.positions.map(() => 50) }), 1700),
+    ];
+    this._handleMove = this._handleMove.bind(this);
+    this._handleUp = this._handleUp.bind(this);
+
+    // Fiação imperativa: ref="{{ }}" em elemento nativo NÃO dispara neste
+    // runtime (setas e reveals do artifact original nasceram mortos por isso),
+    // e o componentDidMount do DCLogic roda ANTES do template virar DOM — por
+    // isso o retry: espera os nós existirem e liga tudo uma vez só.
+    this._onGalScroll = () => {
+      const el = this._galleryEl;
+      const idx = Math.round(el.scrollLeft / el.clientWidth);
+      if (idx !== this.state.activeCase) this.setState({ activeCase: idx });
+    };
+    this._onTestiScroll = () => {
+      const el = this._testimonialsEl;
+      const idx = Math.round(el.scrollLeft / el.clientWidth);
+      if (idx !== this.state.activeTestimonial) this.setState({ activeTestimonial: idx });
+    };
+    let tentativas = 0;
+    const ligar = () => {
+      const gal = document.querySelector(".gallery-grid");
+      if (!gal && tentativas++ < 50) {
+        this._wireTimer = setTimeout(ligar, 100);
+        return;
+      }
+      this._galleryEl = gal;
+      this._testimonialsEl = document.querySelector(".testi-track");
+      if (this._galleryEl) this._galleryEl.addEventListener("scroll", this._onGalScroll, { passive: true });
+      if (this._testimonialsEl) this._testimonialsEl.addEventListener("scroll", this._onTestiScroll, { passive: true });
+
+      // Reveals: is-on vai direto no DOM. React não reescreve className que
+      // não mudou entre renders, então a classe adicionada por fora sobrevive.
+      // Sem IntersectionObserver, revela tudo — seção invisível nunca.
+      if (typeof IntersectionObserver === "undefined") {
+        document.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-on"));
+        return;
+      }
+      this._io = new IntersectionObserver((entries) => {
+        for (const en of entries) {
+          if (en.isIntersecting) {
+            en.target.classList.add("is-on");
+            this._io.unobserve(en.target);
+          }
+        }
+      }, { threshold: 0.15 });
+      document.querySelectorAll(".reveal").forEach((el) => this._io.observe(el));
+    };
+    ligar();
+  }
+
+  componentWillUnmount() {
+    (this._introTimers || []).forEach(clearTimeout);
+    window.removeEventListener("pointermove", this._handleMove);
+    window.removeEventListener("pointerup", this._handleUp);
+    window.removeEventListener("scroll", this._onScroll);
+    clearTimeout(this._wireTimer);
+    if (this._galleryEl) this._galleryEl.removeEventListener("scroll", this._onGalScroll);
+    if (this._testimonialsEl) this._testimonialsEl.removeEventListener("scroll", this._onTestiScroll);
+    if (this._io) this._io.disconnect();
+  }
+
+  startDrag(e, index) {
+    e.preventDefault();
+    this._dragIndex = index;
+    this._dragEl = e.currentTarget;
+    this.setState({ draggingIndex: index });
+    this._updateDrag(e);
+    window.addEventListener("pointermove", this._handleMove);
+    window.addEventListener("pointerup", this._handleUp);
+  }
+
+  _handleMove(e) {
+    this._updateDrag(e);
+  }
+
+  _handleUp() {
+    this._dragIndex = null;
+    this._dragEl = null;
+    this.setState({ draggingIndex: null });
+    window.removeEventListener("pointermove", this._handleMove);
+    window.removeEventListener("pointerup", this._handleUp);
+  }
+
+  _updateDrag(e) {
+    if (!this._dragEl || this._dragIndex === null) return;
+    const rect = this._dragEl.getBoundingClientRect();
+    const clientX = e.clientX !== undefined ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : null);
+    if (clientX === null) return;
+    let pct = ((clientX - rect.left) / rect.width) * 100;
+    pct = Math.max(0, Math.min(100, pct));
+    const positions = [...this.state.positions];
+    positions[this._dragIndex] = pct;
+    this.setState({ positions });
+  }
+
+  toggleProc(groupIdx, itemId) {
+    this.setState((s) => ({
+      openProc: { ...s.openProc, [groupIdx]: s.openProc[groupIdx] === itemId ? null : itemId },
+    }));
+  }
+
+  toggleFaq(id) {
+    this.setState((s) => ({ faqOpen: s.faqOpen === id ? null : id }));
+  }
+
+  scrollGallery(dir) {
+    if (!this._galleryEl) return;
+    this._galleryEl.scrollBy({ left: dir * this._galleryEl.clientWidth, behavior: "smooth" });
+  }
+
+  scrollTestimonials(dir) {
+    if (!this._testimonialsEl) return;
+    this._testimonialsEl.scrollBy({ left: dir * this._testimonialsEl.clientWidth, behavior: "smooth" });
+  }
+
+  renderVals() {
+    const cases = CASE_FILES.map((num, i) => {
+      const pos = this.state.positions[i];
+      const dragging = this.state.draggingIndex === i;
+      return {
+        antes: getRes(`caso${num}antes`, `assets/caso-${num}-antes.jpg`),
+        depois: getRes(`caso${num}depois`, `assets/caso-${num}-depois.jpg`),
+        pos,
+        clip: `inset(0 ${100 - pos}% 0 0)`,
+        transition: dragging ? "none" : "clip-path 0.6s cubic-bezier(.4,0,.2,1), left 0.6s cubic-bezier(.4,0,.2,1)",
+        onPointerDown: (e) => this.startDrag(e, i),
+      };
+    });
+
+    const dots = CASE_FILES.map((_, i) => ({
+      color: this.state.activeCase === i ? "#f4f0e9" : "rgba(244,240,233,0.25)",
+    }));
+
+    const faqItems = FAQS.map((f) => {
+      const open = this.state.faqOpen === f.id;
+      return { ...f, symbol: open ? "–" : "+", maxHeight: open ? "200px" : "0px", toggle: () => this.toggleFaq(f.id) };
+    });
+
+    const testimonials = TESTIMONIALS.map((src) => ({ src }));
+    const testimonialDots = TESTIMONIALS.map((_, i) => ({
+      color: this.state.activeTestimonial === i ? "#9d3a56" : "rgba(68,42,30,0.25)",
+    }));
+
+    const scrolled = this.state.scrolled;
+
+    return {
+      whatsappUrl: WHATSAPP_URL,
+      instagramUrl: INSTAGRAM_URL,
+      headerBg: scrolled ? "rgba(244,240,233,0.85)" : "transparent",
+      headerBlur: scrolled ? "blur(10px)" : "none",
+      headerBorder: scrolled ? "1px solid rgba(68,42,30,0.12)" : "1px solid transparent",
+      headerLogo: scrolled ? getRes("logoMarrom", "assets/logo-lettering-marrom.png") : getRes("logoCreme", "assets/logo-lettering-creme.png"),
+      cases,
+      dots,
+      groups: GROUPS.map((g, gi) => ({
+        ...g,
+        items: g.items.map((it) => {
+          const open = this.state.openProc[gi] === it.id;
+          return {
+            ...it,
+            openClass: open ? "is-open" : "",
+            maxHeight: open ? "200px" : "0px",
+            descOpacity: open ? 1 : 0,
+            toggle: () => this.toggleProc(gi, it.id),
+          };
+        }),
+      })),
+      steps: STEPS,
+      faqItems,
+      testimonials,
+      testimonialDots,
+      prevCase: () => this.scrollGallery(-1),
+      nextCase: () => this.scrollGallery(1),
+      prevTestimonial: () => this.scrollTestimonials(-1),
+      nextTestimonial: () => this.scrollTestimonials(1),
+    };
+  }
+}
+
+</script>
+
+
+</body></html>
