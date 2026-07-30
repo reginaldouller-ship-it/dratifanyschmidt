@@ -1,7 +1,34 @@
 <!DOCTYPE html>
-<html><head>
+<html lang="pt-BR"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- SEO + preview de compartilhamento (WhatsApp lê daqui, sem rodar JS) -->
+<title>Dra. Tifany Schmidt — Biomedicina Estética em Balneário Camboriú</title>
+<meta name="description" content="Avaliação individual e tratamentos faciais em Balneário Camboriú. Harmonização facial, toxina botulínica, bioestimuladores e tratamentos de pele. Atendimento com hora marcada.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dra. Tifany Schmidt — Biomedicina Estética">
+<meta property="og:description" content="Cada rosto pede um protocolo diferente. Avaliação individual e tratamentos faciais em Balneário Camboriú.">
+<meta property="og:image" content="https://reginaldouller-ship-it.github.io/dratifanyschmidt/assets/foto-hero.jpg">
+<meta property="og:url" content="https://reginaldouller-ship-it.github.io/dratifanyschmidt/">
+<meta property="og:locale" content="pt_BR">
+<link rel="icon" href="assets/favicon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HealthAndBeautyBusiness",
+  "name": "Dra. Tifany Schmidt — Biomedicina Estética",
+  "url": "https://reginaldouller-ship-it.github.io/dratifanyschmidt/",
+  "telephone": "+55 47 99772-2437",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Rua 700, nº 489, sala 2404 — Ed. Benvenutti Business Center",
+    "addressLocality": "Balneário Camboriú",
+    "addressRegion": "SC",
+    "postalCode": "88330-620",
+    "addressCountry": "BR"
+  }
+}
+</script>
 <script>window.__resources = Object.assign({}, window.__resources, {
   "https://unpkg.com/react@18.3.1/umd/react.production.min.js": "vendor/react.production.min.js",
   "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js": "vendor/react-dom.production.min.js"
@@ -438,12 +465,7 @@
       .float-cta { bottom: 16px; right: 16px; }
     }
     .gallery-arrow { display: flex; }
-    .frentes { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 48px; align-items: start; }
-    .divisor { background: #6e2a2e; opacity: 1; width: 1px; height: 100%; }
-    @media (max-width: 768px) {
-      .frentes { grid-template-columns: 1fr; }
-      .divisor { width: 100%; height: 1px; }
-    }
+    .gal-counter { text-align: center; margin-top: 12px; font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 15px; color: rgba(244,240,233,0.65); }
     .sec-eu-faco { padding: 88px 24px; }
     @media (min-width: 900px) {
       .sec-eu-faco { padding: 88px 64px; }
@@ -451,16 +473,38 @@
     .titulo-encaixe { text-align: center; line-height: 0.92; }
     .titulo-encaixe .linha1 { display: block; }
     .titulo-encaixe .linha2 { display: block; font-style: italic; font-size: 1.05em; margin-left: 0; margin-top: 0; }
-    .proc-card { border: 1px solid rgba(68,42,30,0.15); border-radius: 14px; padding: 20px; cursor: pointer; margin-bottom: 12px; transition: background 0.2s ease, border-color 0.2s ease; }
-    .proc-card:hover { border-color: rgba(110,42,46,0.35); }
-    .proc-card.is-open { background: rgba(110,42,46,0.05); border-color: rgba(110,42,46,0.45); }
-    .card-cabecalho { position: relative; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 48px; min-height: 32px; }
-    .card-cabecalho .proc-name { word-wrap: break-word; overflow-wrap: break-word; white-space: normal; }
-    .card-cabecalho .seta { position: absolute; right: 0; top: 50%; transform: translateY(-50%); }
-    .proc-chevron { flex-shrink: 0; transition: transform 0.3s ease; }
-    .proc-chevron.is-open { transform: translateY(-50%) rotate(180deg); }
-    .proc-desc-wrap { overflow: hidden; transition: max-height 0.3s ease, opacity 0.3s ease; text-align: center; }
-    .proc-desc-wrap p { max-width: 90%; margin-left: auto; margin-right: auto; }
+    /* Índice interativo de procedimentos: lista numerada à esquerda, painel
+       café sticky à direita (hover/clique troca). No mobile o painel some e a
+       descrição expande sob a própria linha — acordeão editorial. */
+    .oque-grid { max-width: 1060px; margin: 0 auto; }
+    .oque-grupo { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 300; color: rgba(68,42,30,0.55); margin: 36px 0 6px; }
+    .oque-list > .oque-grupo:first-child { margin-top: 0; }
+    .proc-row { display: flex; align-items: baseline; gap: 14px; padding: 18px 4px; border-bottom: 1px solid rgba(68,42,30,0.15); cursor: pointer; }
+    .proc-row .pn { font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 14px; color: rgba(68,42,30,0.5); transition: color 0.2s ease; }
+    .proc-row .pname { font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: clamp(20px, 2.4vw, 26px); color: #442a1e; transition: color 0.2s ease; }
+    .proc-row .pseta { margin-left: auto; font-size: 18px; color: var(--vinho); opacity: 0; transform: translateX(-8px); transition: opacity 0.25s ease, transform 0.25s ease; }
+    .proc-row.is-active .pn, .proc-row.is-active .pname { color: var(--vinho); }
+    .proc-row.is-active .pseta { opacity: 1; transform: none; }
+    @media (hover: hover) { .proc-row:hover .pname { color: var(--vinho); } }
+    .proc-desc { overflow: hidden; transition: max-height 0.35s ease, opacity 0.35s ease; }
+    .proc-desc p { margin: 12px 4px 20px; font-weight: 300; font-size: 15px; line-height: 1.6; color: rgba(68,42,30,0.8); }
+    .proc-panel { display: none; }
+    @media (min-width: 900px) {
+      .oque-grid { display: grid; grid-template-columns: 1fr 0.9fr; gap: 56px; align-items: start; }
+      .proc-desc { display: none; }
+      .proc-panel { display: block; position: sticky; top: 96px; border-radius: 14px; padding: 40px 36px; overflow: hidden; min-height: 340px; }
+      .proc-panel .panel-ghost { position: absolute; top: -30px; right: 8px; font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 170px; line-height: 1; color: rgba(244,240,233,0.07); user-select: none; pointer-events: none; }
+      .panel-grupo { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 300; color: rgba(244,240,233,0.6); margin: 0 0 16px; }
+      .panel-grupo::after { content: ""; display: block; width: 26px; height: 1px; margin-top: 10px; background: rgba(244,240,233,0.35); }
+      .panel-name { margin: 0 0 14px; font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: 30px; color: #f4f0e9; }
+      .panel-detail { margin: 0 0 24px; font-weight: 300; font-size: 15.5px; line-height: 1.7; color: rgba(244,240,233,0.8); }
+      .panel-link { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #f4f0e9; text-decoration: underline; text-underline-offset: 5px; font-weight: 400; }
+      .panel-link:hover { color: rgba(244,240,233,0.75); }
+    }
+    /* dois keyframes idênticos: o renderVals alterna o nome a cada troca para
+       a animação re-disparar (React mantém o nó, animação igual não reinicia) */
+    @keyframes procSwapA { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    @keyframes procSwapB { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
     .about-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
     @media (min-width: 900px) {
       .about-grid { grid-template-columns: 1fr 1fr; align-items: stretch; }
@@ -525,12 +569,13 @@
     .marquee-half .mq-dot { font-style: normal; opacity: 0.5; }
     @keyframes marqueeSlide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-    /* Numeral editorial dos grupos de procedimentos */
-    .grupo-num {
-      font-family: 'Bodoni Moda', serif; font-style: italic; font-weight: 400;
-      font-size: 40px; line-height: 1; color: var(--vinho);
-      text-align: center; margin-bottom: 14px;
-    }
+    /* Ken Burns de assentamento no hero: zoom 1.07 → 1 uma vez, cinematográfico
+       sem enjoar (não é loop) */
+    @keyframes heroSettle { from { transform: scale(1.07); } to { transform: scale(1); } }
+    .hero-media img { animation: heroSettle 7s cubic-bezier(0.2, 0.6, 0.2, 1) both; }
+
+    /* Barra de progresso de leitura — fio bordô acima do header */
+    .scroll-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: var(--vinho); z-index: 70; }
 
     /* Micro-interações (sem hover-lift na galeria: dentro de trilho com
        overflow-x o translateY clipa a sombra, e o card já é superfície de
@@ -592,11 +637,16 @@
       .reveal, .reveal-stagger > * { opacity: 1 !important; transform: none !important; transition: none !important; }
       .testi-card:nth-child(odd), .testi-card:nth-child(even) { transform: none; }
       .gallery-item:hover, .pre-cta-btn:hover { transform: none; }
+      .hero-media img { animation: none; }
+      .panel-swap { animation: none !important; }
     }
   </style>
 </helmet>
 
 <div style="background:#442a1e; color:#f4f0e9; overflow-x:hidden;">
+
+  <!-- PROGRESSO DE LEITURA (largura via DOM direto no onScroll — sem re-render) -->
+  <div class="scroll-progress" id="scrollProgress"></div>
 
   <!-- HEADER -->
   <header style="position:fixed; top:0; left:0; right:0; z-index:50; height:72px; display:flex; align-items:center; justify-content:space-between; padding:0 24px; background: {{ headerBg }}; backdrop-filter: {{ headerBlur }}; border-bottom: {{ headerBorder }}; transition:background 0.3s ease, border-color 0.3s ease;">
@@ -634,8 +684,8 @@
     <div class="gallery-grid">
       <sc-for list="{{ cases }}" as="item" hint-placeholder-count="9">
         <div class="gallery-item" data-gallery-card="true" style="position:relative; aspect-ratio:4/5; overflow:hidden; border-radius:2px; cursor:ew-resize; touch-action:none; user-select:none;" sc-camel-on-pointer-down="{{ item.onPointerDown }}">
-          <img src="{{ item.depois }}" alt="Depois" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; pointer-events:none;">
-          <img src="{{ item.antes }}" alt="Antes" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; pointer-events:none; clip-path: {{ item.clip }};">
+          <img src="{{ item.depois }}" alt="Depois" loading="lazy" decoding="async" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; pointer-events:none;">
+          <img src="{{ item.antes }}" alt="Antes" loading="lazy" decoding="async" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; pointer-events:none; clip-path: {{ item.clip }};">
 
           <div style="position:absolute; top:12px; left:12px; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#f4f0e9; background:rgba(68,42,30,0.6); padding:6px 10px;">Antes</div>
           <div style="position:absolute; top:12px; right:12px; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#f4f0e9; background:rgba(68,42,30,0.8); padding:6px 10px;">Depois</div>
@@ -663,6 +713,7 @@
         <div style="width:6px; height:6px; border-radius:50%; background: {{ dot.color }};"></div>
       </sc-for>
     </div>
+    <div class="gal-counter">{{ caseCounter }}</div>
 
     <p style="max-width:640px; margin:36px auto 0; text-align:center; font-size:12px; line-height:1.6; color:rgba(244,240,233,0.5); font-weight:300;">Divulgação autorizada pelas pacientes. Esta imagem não representa, em hipótese alguma, garantia de resultado. Cada ser humano tem características anatômicas e fisiológicas únicas.</p>
   </section>
@@ -685,38 +736,44 @@
       <div class="sec-eyebrow sec-eyebrow--light">Procedimentos</div>
       <h2 class="titulo-encaixe" style="margin:0; font-family:'Bodoni Moda', serif; font-weight:400; font-size:clamp(32px,5.5vw,64px); color:#442a1e;"><span class="linha1">O QUE</span><span class="linha2 linha2-vinho">eu faço</span></h2>
     </div>
-    <div class="frentes" style="max-width:1100px; margin:0 auto;">
-      <div>
-        <div class="grupo-num">{{ groups.0.label }}</div>
-        <h3 class="titulo-encaixe" style="margin:0 0 32px; font-family:'Bodoni Moda', serif; font-weight:400; font-size:40px; color:#442a1e;"><span class="linha1">Harmonização</span><span class="linha2 linha2-vinho">facial</span></h3>
-        <sc-for list="{{ groups.0.items }}" as="it" hint-placeholder-count="4">
-          <div class="proc-card {{ it.openClass }}" sc-camel-on-click="{{ it.toggle }}">
-            <div class="card-cabecalho">
-              <div class="proc-name" style="font-family:'Bodoni Moda', serif; font-weight:400; font-size:22px; color:#442a1e;">{{ it.name }}</div>
-              <svg class="proc-chevron seta {{ it.openClass }}" width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#6e2a2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    <div class="oque-grid">
+      <div class="oque-list">
+        <div class="oque-grupo">01 · Harmonização facial</div>
+        <sc-for list="{{ groups.0.items }}" as="it" hint-placeholder-count="3">
+          <div class="proc-item">
+            <div class="proc-row {{ it.cls }}" sc-camel-on-click="{{ it.pick }}" sc-camel-on-mouse-enter="{{ it.pick }}">
+              <span class="pn">{{ it.num }}</span>
+              <span class="pname">{{ it.name }}</span>
+              <span class="pseta">→</span>
             </div>
-            <div class="proc-desc-wrap" style="max-height: {{ it.maxHeight }}; opacity: {{ it.descOpacity }};">
-              <p style="margin-top:12px; font-weight:300; font-size:15px; line-height:1.6; color:rgba(68,42,30,0.8);">{{ it.detail }}</p>
+            <div class="proc-desc" style="max-height: {{ it.mh }}; opacity: {{ it.op }};">
+              <p>{{ it.detail }}</p>
             </div>
           </div>
         </sc-for>
-      </div>
-      <div class="divisor"></div>
-      <div>
-        <div class="grupo-num">{{ groups.1.label }}</div>
-        <h3 class="titulo-encaixe" style="margin:0 0 32px; font-family:'Bodoni Moda', serif; font-weight:400; font-size:40px; color:#442a1e;"><span class="linha1">Tratamentos</span><span class="linha2 linha2-vinho">de pele</span></h3>
+        <div class="oque-grupo">02 · Tratamentos de pele</div>
         <sc-for list="{{ groups.1.items }}" as="it" hint-placeholder-count="3">
-          <div class="proc-card {{ it.openClass }}" sc-camel-on-click="{{ it.toggle }}">
-            <div class="card-cabecalho">
-              <div class="proc-name" style="font-family:'Bodoni Moda', serif; font-weight:400; font-size:22px; color:#442a1e;">{{ it.name }}</div>
-              <svg class="proc-chevron seta {{ it.openClass }}" width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#6e2a2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <div class="proc-item">
+            <div class="proc-row {{ it.cls }}" sc-camel-on-click="{{ it.pick }}" sc-camel-on-mouse-enter="{{ it.pick }}">
+              <span class="pn">{{ it.num }}</span>
+              <span class="pname">{{ it.name }}</span>
+              <span class="pseta">→</span>
             </div>
-            <div class="proc-desc-wrap" style="max-height: {{ it.maxHeight }}; opacity: {{ it.descOpacity }};">
-              <p style="margin-top:12px; font-weight:300; font-size:15px; line-height:1.6; color:rgba(68,42,30,0.8);">{{ it.detail }}</p>
+            <div class="proc-desc" style="max-height: {{ it.mh }}; opacity: {{ it.op }};">
+              <p>{{ it.detail }}</p>
             </div>
           </div>
         </sc-for>
       </div>
+      <aside class="proc-panel texture-cafe">
+        <div class="panel-ghost">{{ activeProc.num }}</div>
+        <div class="panel-swap" style="animation: {{ panelAnim }};">
+          <div class="panel-grupo">{{ activeProc.grupo }}</div>
+          <h3 class="panel-name">{{ activeProc.name }}</h3>
+          <p class="panel-detail">{{ activeProc.detail }}</p>
+          <a class="panel-link" href="{{ whatsappUrl }}" target="_blank" rel="noopener">Agendar avaliação →</a>
+        </div>
+      </aside>
     </div>
   </section>
 
@@ -744,7 +801,7 @@
   <section class="texture-light reveal" style="background:#f4f0e9; color:#442a1e;">
     <div class="about-grid">
       <div style="width:100%; min-height:340px; overflow:hidden;">
-        <img src="assets/foto-sobre.jpg" alt="Dra. Tifany Schmidt" style="width:100%; height:100%; object-fit:cover; display:block;">
+        <img src="assets/foto-sobre.jpg" alt="Dra. Tifany Schmidt" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; display:block;">
       </div>
       <div style="display:flex; flex-direction:column; justify-content:center; padding:56px 20px;">
         <div class="sec-eyebrow sec-eyebrow--light">Dra. Tifany Schmidt</div>
@@ -765,7 +822,7 @@
       <div class="testi-track hide-scrollbar">
         <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="6">
           <div class="testi-card">
-            <img src="{{ t.src }}" alt="Depoimento de paciente" style="width:100%; height:auto; display:block; object-fit:contain;">
+            <img src="{{ t.src }}" alt="Depoimento de paciente" loading="lazy" decoding="async" style="width:100%; height:auto; display:block; object-fit:contain;">
           </div>
         </sc-for>
       </div>
@@ -807,7 +864,7 @@
 
   <!-- FOTO ANTES DO BOTAO FINAL -->
   <section class="reveal" style="position:relative; height:60vh; min-height:380px; overflow:hidden;">
-    <img src="assets/foto-antes-do-botao-final.jpg" alt="Dra. Tifany Schmidt" style="width:100%; height:100%; object-fit:cover; display:block;">
+    <img src="assets/foto-antes-do-botao-final.jpg" alt="Dra. Tifany Schmidt" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; display:block;">
     <div style="position:absolute; inset:0; background:radial-gradient(120% 120% at 50% 50%, rgba(68,42,30,0.55) 30%, rgba(68,42,30,0.80) 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px;">
       <p class="pre-cta-line">O resultado é construído,<br>não comprado.</p>
       <a href="{{ whatsappUrl }}" target="_blank" rel="noopener" class="pre-cta-btn">Agendar avaliação</a>
@@ -817,7 +874,7 @@
   <!-- FOOTER -->
   <footer class="texture-cafe" style="padding:64px 20px 96px; font-weight:300; font-size:15px; line-height:1.8;">
     <div style="max-width:760px; margin:0 auto 44px;">
-      <img src="assets/logo-lettering-creme.png" alt="Tifany Schmidt" style="height:30px; width:auto; display:block;">
+      <img src="assets/logo-lettering-creme.png" alt="Tifany Schmidt" loading="lazy" decoding="async" style="height:30px; width:auto; display:block;">
     </div>
     <div class="footer-grid" style="max-width:760px; margin:0 auto;">
       <div>
@@ -904,7 +961,8 @@ class Component extends DCLogic {
     faqOpen: null,
     activeCase: 0,
     scrolled: false,
-    openProc: { 0: null, 1: null },
+    activeProc: 0,
+    procFlip: false,
     activeTestimonial: 0,
   };
 
@@ -912,6 +970,11 @@ class Component extends DCLogic {
     this._onScroll = () => {
       const scrolled = window.scrollY > 40;
       if (scrolled !== this.state.scrolled) this.setState({ scrolled });
+      if (this._progressEl) {
+        const h = document.documentElement;
+        const max = h.scrollHeight - h.clientHeight;
+        this._progressEl.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
+      }
     };
     window.addEventListener("scroll", this._onScroll, { passive: true });
     this._introTimers = [
@@ -945,6 +1008,7 @@ class Component extends DCLogic {
       }
       this._galleryEl = gal;
       this._testimonialsEl = document.querySelector(".testi-track");
+      this._progressEl = document.getElementById("scrollProgress");
       if (this._galleryEl) this._galleryEl.addEventListener("scroll", this._onGalScroll, { passive: true });
       if (this._testimonialsEl) this._testimonialsEl.addEventListener("scroll", this._onTestiScroll, { passive: true });
 
@@ -1013,10 +1077,11 @@ class Component extends DCLogic {
     this.setState({ positions });
   }
 
-  toggleProc(groupIdx, itemId) {
-    this.setState((s) => ({
-      openProc: { ...s.openProc, [groupIdx]: s.openProc[groupIdx] === itemId ? null : itemId },
-    }));
+  setActiveProc(i) {
+    if (i === this.state.activeProc) return;
+    // procFlip alterna o animation-name do painel (procSwapA/B) para o fade
+    // re-disparar a cada troca — React mantém o nó, animação igual não reinicia.
+    this.setState((s) => ({ activeProc: i, procFlip: !s.procFlip }));
   }
 
   toggleFaq(id) {
@@ -1056,6 +1121,26 @@ class Component extends DCLogic {
       return { ...f, symbol: open ? "–" : "+", maxHeight: open ? "200px" : "0px", toggle: () => this.toggleFaq(f.id) };
     });
 
+    const procsFlat = [];
+    GROUPS.forEach((g) => g.items.forEach((it) => procsFlat.push({ ...it, grupo: g.title })));
+    const procAtivo = Math.min(this.state.activeProc, procsFlat.length - 1);
+    let procIdx = 0;
+    const groups = GROUPS.map((g) => ({
+      ...g,
+      items: g.items.map((it) => {
+        const i = procIdx++;
+        const on = i === procAtivo;
+        return {
+          ...it,
+          num: String(i + 1).padStart(2, "0"),
+          cls: on ? "is-active" : "",
+          mh: on ? "220px" : "0px",
+          op: on ? 1 : 0,
+          pick: () => this.setActiveProc(i),
+        };
+      }),
+    }));
+
     const testimonials = TESTIMONIALS.map((src) => ({ src }));
     const testimonialDots = TESTIMONIALS.map((_, i) => ({
       color: this.state.activeTestimonial === i ? "#6e2a2e" : "rgba(68,42,30,0.25)",
@@ -1072,19 +1157,12 @@ class Component extends DCLogic {
       headerLogo: scrolled ? getRes("logoMarrom", "assets/logo-lettering-marrom.png") : getRes("logoCreme", "assets/logo-lettering-creme.png"),
       cases,
       dots,
-      groups: GROUPS.map((g, gi) => ({
-        ...g,
-        items: g.items.map((it) => {
-          const open = this.state.openProc[gi] === it.id;
-          return {
-            ...it,
-            openClass: open ? "is-open" : "",
-            maxHeight: open ? "200px" : "0px",
-            descOpacity: open ? 1 : 0,
-            toggle: () => this.toggleProc(gi, it.id),
-          };
-        }),
-      })),
+      caseCounter:
+        String(Math.min(this.state.activeCase, CASE_FILES.length - 1) + 1).padStart(2, "0") +
+        " / " + String(CASE_FILES.length).padStart(2, "0"),
+      groups,
+      activeProc: { ...procsFlat[procAtivo], num: String(procAtivo + 1).padStart(2, "0") },
+      panelAnim: (this.state.procFlip ? "procSwapA" : "procSwapB") + " 0.4s ease both",
       steps: STEPS,
       faqItems,
       testimonials,
