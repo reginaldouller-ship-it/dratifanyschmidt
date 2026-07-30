@@ -400,7 +400,7 @@
       text-decoration: none; font-weight: 500;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .hero-cta:hover { color: #442a1e; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.28); }
+    .hero-cta:hover { background: var(--vinho); color: var(--creme); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.28); }
     .hero-note { margin: 14px 0 0; font-size: 12px; font-weight: 300; color: rgba(244,240,233,0.6); }
     @media (min-width: 900px) {
       .hero-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; min-height: 100vh; }
@@ -432,14 +432,14 @@
       .hero-body > * { animation: none; }
       .hero-cta:hover { transform: none; }
     }
-    .float-cta { position: fixed; bottom: 24px; right: 24px; z-index: 60; display: flex; align-items: center; gap: 10px; background: #9d3a56; color: #f4f0e9; border-radius: 999px; padding: 14px 24px; box-shadow: 0 6px 24px rgba(157,58,86,0.35); text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease; }
-    .float-cta:hover { transform: scale(1.05); color: #f4f0e9; box-shadow: 0 10px 32px rgba(157,58,86,0.45); }
+    .float-cta { position: fixed; bottom: 24px; right: 24px; z-index: 60; display: flex; align-items: center; gap: 10px; background: #6e2a2e; color: #f4f0e9; border-radius: 999px; padding: 14px 24px; box-shadow: 0 6px 24px rgba(110,42,46,0.35); text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .float-cta:hover { transform: scale(1.05); color: #f4f0e9; box-shadow: 0 10px 32px rgba(110,42,46,0.45); }
     @media (max-width: 600px) {
       .float-cta { bottom: 16px; right: 16px; }
     }
     .gallery-arrow { display: flex; }
     .frentes { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 48px; align-items: start; }
-    .divisor { background: #9d3a56; opacity: 1; width: 1px; height: 100%; }
+    .divisor { background: #6e2a2e; opacity: 1; width: 1px; height: 100%; }
     @media (max-width: 768px) {
       .frentes { grid-template-columns: 1fr; }
       .divisor { width: 100%; height: 1px; }
@@ -452,8 +452,8 @@
     .titulo-encaixe .linha1 { display: block; }
     .titulo-encaixe .linha2 { display: block; font-style: italic; font-size: 1.05em; margin-left: 0; margin-top: 0; }
     .proc-card { border: 1px solid rgba(68,42,30,0.15); border-radius: 14px; padding: 20px; cursor: pointer; margin-bottom: 12px; transition: background 0.2s ease, border-color 0.2s ease; }
-    .proc-card:hover { border-color: rgba(157,58,86,0.35); }
-    .proc-card.is-open { background: rgba(157,58,86,0.05); border-color: rgba(157,58,86,0.45); }
+    .proc-card:hover { border-color: rgba(110,42,46,0.35); }
+    .proc-card.is-open { background: rgba(110,42,46,0.05); border-color: rgba(110,42,46,0.45); }
     .card-cabecalho { position: relative; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 48px; min-height: 32px; }
     .card-cabecalho .proc-name { word-wrap: break-word; overflow-wrap: break-word; white-space: normal; }
     .card-cabecalho .seta { position: absolute; right: 0; top: 50%; transform: translateY(-50%); }
@@ -481,11 +481,11 @@
     }
 
     /* ═══ Sistema do redesign ═══
-       Tese de cor: vinho (#9d3a56) é o acento de AÇÃO e estado vivo — CTAs
+       Tese de cor: vinho (#6e2a2e) é o acento de AÇÃO e estado vivo — CTAs
        persistentes, hovers, estados abertos, itálicos de título em fundo claro.
        Em fundo escuro vinho reprova contraste de texto (2.6:1), então lá ele é
        só decorativo (faixa, régua) ou fundo de bloco com texto creme (5.8:1). */
-    :root { --marrom: #442a1e; --cafe: #2a1710; --creme: #f4f0e9; --vinho: #9d3a56; }
+    :root { --marrom: #442a1e; --cafe: #2a1710; --creme: #f4f0e9; --vinho: #6e2a2e; }
     ::selection { background: var(--vinho); color: var(--creme); }
     .linha2-vinho { color: var(--vinho); }
 
@@ -577,7 +577,7 @@
 
     /* Atmosfera do hero: bloom vinho sutil atrás da copy + sublinhado vinho
        no itálico (a palavra segue creme 15:1; o traço é decorativo). */
-    .hero-body { background-image: radial-gradient(120% 90% at 10% 105%, rgba(157,58,86,0.16), transparent 55%); }
+    .hero-body { background-image: radial-gradient(120% 90% at 10% 105%, rgba(110,42,46,0.16), transparent 55%); }
     .hero-title em {
       text-decoration: underline; text-decoration-color: var(--vinho);
       text-decoration-thickness: 2px; text-underline-offset: clamp(4px, 0.09em, 9px);
@@ -642,8 +642,8 @@
           <div style="position:absolute; top:12px; left:12px; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#f4f0e9; background:rgba(68,42,30,0.6); padding:6px 10px;">Antes</div>
           <div style="position:absolute; top:12px; right:12px; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#f4f0e9; background:rgba(68,42,30,0.8); padding:6px 10px;">Depois</div>
 
-          <div style="position:absolute; top:0; bottom:0; width:2px; background:#9d3a56; left: {{ item.pos }}%; transform:translateX(-1px); transition: {{ item.transition }}; pointer-events:none;"></div>
-          <div style="position:absolute; top:50%; width:38px; height:38px; border-radius:50%; background:#9d3a56; left: {{ item.pos }}%; transform:translate(-50%,-50%); transition: {{ item.transition }}; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 10px rgba(0,0,0,0.35); pointer-events:none;">
+          <div style="position:absolute; top:0; bottom:0; width:2px; background:#6e2a2e; left: {{ item.pos }}%; transform:translateX(-1px); transition: {{ item.transition }}; pointer-events:none;"></div>
+          <div style="position:absolute; top:50%; width:38px; height:38px; border-radius:50%; background:#6e2a2e; left: {{ item.pos }}%; transform:translate(-50%,-50%); transition: {{ item.transition }}; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 10px rgba(0,0,0,0.35); pointer-events:none;">
             <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none">
               <path d="M8 7L3 12L8 17" stroke="#f4f0e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
               <path d="M16 7L21 12L16 17" stroke="#f4f0e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -695,7 +695,7 @@
           <div class="proc-card {{ it.openClass }}" sc-camel-on-click="{{ it.toggle }}">
             <div class="card-cabecalho">
               <div class="proc-name" style="font-family:'Bodoni Moda', serif; font-weight:400; font-size:22px; color:#442a1e;">{{ it.name }}</div>
-              <svg class="proc-chevron seta {{ it.openClass }}" width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#9d3a56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <svg class="proc-chevron seta {{ it.openClass }}" width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#6e2a2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             </div>
             <div class="proc-desc-wrap" style="max-height: {{ it.maxHeight }}; opacity: {{ it.descOpacity }};">
               <p style="margin-top:12px; font-weight:300; font-size:15px; line-height:1.6; color:rgba(68,42,30,0.8);">{{ it.detail }}</p>
@@ -711,7 +711,7 @@
           <div class="proc-card {{ it.openClass }}" sc-camel-on-click="{{ it.toggle }}">
             <div class="card-cabecalho">
               <div class="proc-name" style="font-family:'Bodoni Moda', serif; font-weight:400; font-size:22px; color:#442a1e;">{{ it.name }}</div>
-              <svg class="proc-chevron seta {{ it.openClass }}" width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#9d3a56" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <svg class="proc-chevron seta {{ it.openClass }}" width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#6e2a2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             </div>
             <div class="proc-desc-wrap" style="max-height: {{ it.maxHeight }}; opacity: {{ it.descOpacity }};">
               <p style="margin-top:12px; font-weight:300; font-size:15px; line-height:1.6; color:rgba(68,42,30,0.8);">{{ it.detail }}</p>
@@ -1060,7 +1060,7 @@ class Component extends DCLogic {
 
     const testimonials = TESTIMONIALS.map((src) => ({ src }));
     const testimonialDots = TESTIMONIALS.map((_, i) => ({
-      color: this.state.activeTestimonial === i ? "#9d3a56" : "rgba(68,42,30,0.25)",
+      color: this.state.activeTestimonial === i ? "#6e2a2e" : "rgba(68,42,30,0.25)",
     }));
 
     const scrolled = this.state.scrolled;
