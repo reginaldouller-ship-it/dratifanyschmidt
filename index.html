@@ -404,24 +404,29 @@ window.GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
        svh em vez de vh para a barra do navegador mobile não empurrar o CTA. */
     .hero { position: relative; overflow: hidden; }
     .hero-grid {
-      display: grid; grid-template-columns: 1fr; grid-template-rows: 1fr auto;
+      display: grid; grid-template-columns: 1fr; grid-template-rows: 1fr;
       min-height: 100vh; min-height: 100svh;
     }
-    /* A img é absoluta de propósito: em fluxo normal a altura intrínseca do
-       retrato (largura x 1.5) virava a altura da linha do grid e esticava o
-       hero muito além de 100svh. Absoluta ela não contribui tamanho nenhum e a
-       linha 1fr manda. */
-    .hero-media { position: relative; grid-row: 1; min-height: 30vh; overflow: hidden; }
-    .hero-media img, .hero-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; display: block; }
-    /* Só protege o logo do header, que é creme e fica sobre a parede bege. */
+    /* Mobile: vídeo em tela cheia atrás de um cartão de vidro (blur + café a
+       78%) — o vídeo respira inteiro e a copy passa contraste em qualquer
+       quadro, mesmo com o fundo branco do consultório. */
+    .hero-media { position: absolute; inset: 0; z-index: 0; }
+    .hero-media img, .hero-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
+    /* véu leve: topo protege o logo creme sobre a parede branca do vídeo,
+       base dá profundidade sob o cartão */
     .hero-scrim {
       position: absolute; inset: 0; pointer-events: none;
-      background: linear-gradient(to bottom, rgba(42,23,16,0.5) 0%, rgba(42,23,16,0) 20%);
+      background: linear-gradient(to top, rgba(42,23,16,0.5) 0%, rgba(42,23,16,0.12) 45%, rgba(42,23,16,0.6) 100%);
     }
     .hero-body {
-      grid-row: 2; z-index: 2;
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 36px 20px 40px; color: #f4f0e9; background-color: #2a1710;
+      grid-column: 1; grid-row: 1; z-index: 2; align-self: end;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      margin: 0 14px calc(76px + env(safe-area-inset-bottom, 0px));
+      padding: 26px 22px 28px; color: #f4f0e9;
+      background-color: rgba(42,23,16,0.78);
+      -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+      border: 1px solid rgba(244,240,233,0.14); border-radius: 16px;
+      overflow: hidden;
     }
     .hero-eyebrow {
       font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
@@ -430,16 +435,15 @@ window.GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
     }
     /* Abaixo de ~400px o rótulo não cabe em uma linha; encolher o tracking
        segura ele inteiro antes de deixar quebrar. */
-    @media (max-width: 400px) {
-      .hero-eyebrow { font-size: 11px; letter-spacing: 0.1em; }
+    @media (max-width: 430px) {
+      .hero-eyebrow { font-size: 10.5px; letter-spacing: 0.08em; }
     }
     .hero-title {
       margin: 0; font-family: 'Bodoni Moda', serif; font-weight: 400;
       line-height: 1.02; letter-spacing: -0.02em;
-      /* Empilhado a linha usa a viewport toda; no split ela cabe em meia
-         viewport menos o padding, por isso o desktop tem escala própria lá
-         embaixo. Com 7vw dos dois lados "Cada rosto pede um" quebrava. */
-      font-size: clamp(28px, 8.5vw, 64px);
+      /* No mobile a linha cabe na largura do cartão de vidro (viewport menos
+         margens e padding); no split desktop tem escala própria lá embaixo. */
+      font-size: clamp(26px, 8vw, 64px);
     }
     .hero-sub { margin: 24px 0 0; max-width: 440px; font-size: 18px; font-weight: 300; line-height: 1.5; }
     .hero-cta {
@@ -453,12 +457,18 @@ window.GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
     .hero-note { margin: 14px 0 0; font-size: 12px; font-weight: 300; color: rgba(244,240,233,0.6); }
     @media (min-width: 900px) {
       .hero-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; min-height: 100vh; }
-      .hero-media { grid-column: 2; grid-row: 1; min-height: 0; }
+      .hero-media { position: relative; inset: auto; grid-column: 2; grid-row: 1; }
       .hero-media img, .hero-media video { object-position: 50% 50%; }
       .hero-scrim { display: none; }
-      /* 48px de respiro no começo do split: a 900px a coluna tem só 450px e
+      /* desktop volta ao split sólido: desfaz o cartão de vidro do mobile.
+         48px de respiro no começo do split: a 900px a coluna tem só 450px e
          64px de cada lado espremiam o título pra 3 linhas. */
-      .hero-body { grid-column: 1; grid-row: 1; padding: 96px 48px; }
+      .hero-body {
+        grid-column: 1; grid-row: 1; align-self: stretch; justify-content: center;
+        margin: 0; padding: 96px 48px; background-color: #2a1710;
+        -webkit-backdrop-filter: none; backdrop-filter: none;
+        border: none; border-radius: 0;
+      }
       .hero-title { font-size: clamp(34px, 4.2vw, 84px); }
       .hero-sub { max-width: 400px; }
     }
