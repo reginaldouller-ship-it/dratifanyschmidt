@@ -691,6 +691,19 @@ window.GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
       font-size: clamp(20px, 2.3vw, 24px); line-height: 1.55; color: var(--marrom);
     }
 
+    /* Formação — cartões de credencial (dados do material oficial dela;
+       nunca acrescentar curso/título sem nova fonte oficial) */
+    .cred-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 300; color: rgba(68,42,30,0.55); margin: 32px 0 14px; }
+    .creds { display: grid; grid-template-columns: 1fr; gap: 10px; max-width: 480px; }
+    @media (min-width: 600px) { .creds { grid-template-columns: 1fr 1fr; } }
+    .cred { display: flex; gap: 12px; align-items: flex-start; border: 1px solid rgba(68,42,30,0.15); border-radius: 10px; padding: 14px; background: rgba(255,253,249,0.6); transition: border-color 0.2s ease, transform 0.2s ease; }
+    .cred:hover { border-color: rgba(110,42,46,0.4); transform: translateY(-2px); }
+    .cred svg { flex-shrink: 0; margin-top: 2px; width: 22px; height: 22px; }
+    .cred svg * { stroke: var(--vinho); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .cred-titulo { font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: 16.5px; color: #442a1e; line-height: 1.25; margin-bottom: 3px; }
+    .cred-inst { font-size: 12.5px; font-weight: 300; color: rgba(68,42,30,0.7); }
+    .cred-nota { margin: 10px 0 0; font-size: 11px; font-weight: 300; color: rgba(68,42,30,0.45); }
+
     @media (prefers-reduced-motion: reduce) {
       .marquee-track { animation: none; }
       .reveal, .reveal-stagger > * { opacity: 1 !important; transform: none !important; transition: none !important; }
@@ -916,6 +929,53 @@ window.GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
         <h2 class="titulo-encaixe" style="margin:0 0 32px; font-family:'Bodoni Moda', serif; font-weight:400; font-size:clamp(28px,4.5vw,48px); color:#442a1e;"><span class="linha1">Quem está</span><span class="linha2 linha2-vinho">do outro lado</span></h2>
         <p class="sobre-lede" style="margin:0 0 20px; max-width:480px;">Eu sempre fui a menina que gostava de se cuidar. Muito antes de saber que existia profissão pra isso, eu já passava horas testando creme, olhando a pele no espelho, tentando entender o que mudava e por quê.</p>
         <p style="margin:0; font-weight:300; font-size:18px; line-height:1.6; color:#442a1e; max-width:480px;">Virei biomédica esteta porque quis entender o que acontece embaixo da pele, não só o que aparece em cima dela. É isso que eu levo pra cada atendimento. Gosto de explicar, gosto que você entenda o que estou fazendo, e não indico nada que eu não indicaria pra mim.</p>
+        <div class="cred-label">Formação</div>
+        <div class="creds">
+          <div class="cred">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M2.5 9.5 L12 5 L21.5 9.5 L12 14 Z"></path>
+              <path d="M6.5 12 v4.2 c0 1.6 11 1.6 11 0 V12"></path>
+              <path d="M21.5 9.5 v5"></path>
+            </svg>
+            <div>
+              <div class="cred-titulo">Biomédica</div>
+              <div class="cred-inst">Centro Universitário Avantis — Uniavan</div>
+            </div>
+          </div>
+          <div class="cred">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="4" y="3.5" width="16" height="13" rx="2"></rect>
+              <path d="M8 7.5 h8 M8 10.5 h5"></path>
+              <circle cx="16.5" cy="15.5" r="2.6"></circle>
+              <path d="M15.3 17.7 L14.6 21 l1.9 -1 1.9 1 -0.7 -3.3"></path>
+            </svg>
+            <div>
+              <div class="cred-titulo">Imersão em HOF em cadáveres</div>
+              <div class="cred-inst">ITC</div>
+            </div>
+          </div>
+          <div class="cred">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3 l7.5 2.8 V11 c0 5.2 -4.4 8.3 -7.5 9.5 C8.9 19.3 4.5 16.2 4.5 11 V5.8 Z"></path>
+              <path d="M8.8 11.6 l2.3 2.3 4.2 -4.6"></path>
+            </svg>
+            <div>
+              <div class="cred-titulo">Residência em HOF</div>
+              <div class="cred-inst">Move Medical</div>
+            </div>
+          </div>
+          <div class="cred">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 6.2 C10 4.6 6.4 4.4 4 5.3 V18.6 c2.4 -0.9 6 -0.7 8 0.9 c2 -1.6 5.6 -1.8 8 -0.9 V5.3 c-2.4 -0.9 -6 -0.7 -8 0.9 Z"></path>
+              <path d="M12 6.2 V19.5"></path>
+            </svg>
+            <div>
+              <div class="cred-titulo">Pós-graduanda em HOF</div>
+              <div class="cred-inst">Instituto Pro Harmony</div>
+            </div>
+          </div>
+        </div>
+        <p class="cred-nota">HOF — harmonização orofacial · CRBM-5: 014010</p>
       </div>
     </div>
   </section>
