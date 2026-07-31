@@ -507,7 +507,13 @@ window.GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
     .proc-row.is-active .pseta { opacity: 1; transform: none; }
     @media (hover: hover) { .proc-row:hover .pname { color: var(--vinho); } }
     .proc-desc { overflow: hidden; transition: max-height 0.35s ease, opacity 0.35s ease; }
-    .proc-desc p { margin: 12px 4px 20px; font-weight: 300; font-size: 15px; line-height: 1.6; color: rgba(68,42,30,0.8); }
+    .proc-desc p { margin: 12px 4px 12px; font-weight: 300; font-size: 15px; line-height: 1.6; color: rgba(68,42,30,0.8); }
+    .proc-desc-link {
+      display: inline-block; margin: 0 4px 20px; font-size: 12px;
+      letter-spacing: 0.15em; text-transform: uppercase; font-weight: 400;
+      color: var(--vinho); text-decoration: underline; text-underline-offset: 4px;
+    }
+    .proc-desc-link:hover { color: var(--vinho); opacity: 0.75; }
     .proc-panel { display: none; }
     @media (min-width: 900px) {
       .oque-grid { display: grid; grid-template-columns: 1fr 0.9fr; gap: 56px; align-items: start; }
@@ -837,6 +843,7 @@ window.GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
             </div>
             <div class="proc-desc" style="max-height: {{ it.mh }}; opacity: {{ it.op }};">
               <p>{{ it.detail }}</p>
+              <a class="proc-desc-link" href="{{ it.whats }}" target="_blank" rel="noopener">Perguntar sobre este procedimento →</a>
             </div>
           </div>
         </sc-for>
@@ -850,6 +857,7 @@ window.GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
             </div>
             <div class="proc-desc" style="max-height: {{ it.mh }}; opacity: {{ it.op }};">
               <p>{{ it.detail }}</p>
+              <a class="proc-desc-link" href="{{ it.whats }}" target="_blank" rel="noopener">Perguntar sobre este procedimento →</a>
             </div>
           </div>
         </sc-for>
@@ -1238,7 +1246,7 @@ class Component extends DCLogic {
     this._onCtaClick = (e) => {
       const a = e.target && e.target.closest ? e.target.closest('a[href*="wa.me"]') : null;
       if (!a || typeof window.gtag !== "function") return;
-      const nomes = { "header-cta": "header", "hero-cta": "hero", "float-cta": "flutuante", "mobile-cta": "sticky_mobile", "pre-cta-btn": "pre_footer", "panel-link": "painel_procedimento" };
+      const nomes = { "header-cta": "header", "hero-cta": "hero", "mobile-cta": "sticky_mobile", "pre-cta-btn": "pre_footer", "panel-link": "painel_procedimento", "proc-desc-link": "acordeao_procedimento" };
       const origem = String(a.className || "").split(/\s+/).map((c) => nomes[c]).find(Boolean) || "footer";
       window.gtag("event", "whatsapp_click", { origem: origem });
     };
@@ -1462,9 +1470,10 @@ class Component extends DCLogic {
           ...it,
           num: String(i + 1).padStart(2, "0"),
           cls: on ? "is-active" : "",
-          mh: on ? "220px" : "0px",
+          mh: on ? "240px" : "0px",
           op: on ? 1 : 0,
           pick: () => this.setActiveProc(i),
+          whats: "https://wa.me/5547997722437?text=" + encodeURIComponent("Oi Dra. Tifany! Me interessei por " + it.name + " e quero agendar uma avaliação."),
         };
       }),
     }));
