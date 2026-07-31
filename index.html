@@ -12,6 +12,24 @@
 <meta property="og:url" content="https://reginaldouller-ship-it.github.io/dratifanyschmidt/">
 <meta property="og:locale" content="pt_BR">
 <link rel="icon" href="assets/favicon.png">
+<script>
+// Analytics (GA4). Para ativar: criar a propriedade em analytics.google.com e
+// trocar o placeholder pelo ID real (G-...). Sem ID válido, nada carrega nem
+// é enviado — zero requisição externa.
+window.GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
+(function () {
+  var id = window.GA_MEASUREMENT_ID;
+  if (!/^G-[A-Z0-9]{6,}$/.test(id) || id === "G-XXXXXXXXXX") return;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=" + id;
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { dataLayer.push(arguments); };
+  gtag("js", new Date());
+  gtag("config", id);
+})();
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -352,12 +370,16 @@
     .texture-dark > *, .texture-cafe > *, .hero-body > * { position: relative; z-index: 1; }
     .hide-scrollbar { scrollbar-width: none; }
     .hide-scrollbar::-webkit-scrollbar { display: none; }
-    .testi-track { display: flex; align-items: center; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 14px 4px 18px; }
-    .testi-card { flex: 0 0 80%; scroll-snap-align: center; }
-    .testi-card img { display: block; width: 100%; height: auto; object-fit: contain; }
+    .testi-track { display: flex; align-items: flex-start; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 14px 4px 18px; }
+    .testi-card { flex: 0 0 85%; scroll-snap-align: center; }
     @media (min-width: 900px) {
-      .testi-card { flex: 0 0 280px; }
+      .testi-card { flex: 0 0 340px; }
     }
+    /* Depoimentos como TEXTO real (transcritos dos prints de WhatsApp, com
+       hora original) — leitor de tela lê, Google indexa. Nunca editar o texto. */
+    .balao { background: #fffdf9; border-radius: 14px 14px 14px 4px; padding: 18px 18px 12px; box-shadow: 0 10px 26px rgba(68,42,30,0.12); }
+    .balao-texto { margin: 0; font-size: 14px; font-weight: 300; line-height: 1.6; color: rgba(68,42,30,0.9); white-space: pre-line; }
+    .balao-meta { margin-top: 10px; text-align: right; font-size: 11px; color: rgba(68,42,30,0.45); }
     .testi-dots, .gallery-dots { display: flex; flex-wrap: wrap; }
     .testi-wrap { padding: 0 64px; }
     @media (max-width: 899px) {
@@ -577,6 +599,10 @@
     /* Barra de progresso de leitura — fio bordô acima do header */
     .scroll-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: var(--vinho); z-index: 70; }
 
+    /* Mapa do rodapé em preto-e-branco para casar com o café; cor no hover */
+    .mapa { width: 100%; height: 240px; border: 0; border-radius: 14px; display: block; filter: grayscale(1) contrast(1.05); transition: filter 0.3s ease; }
+    .mapa:hover { filter: none; }
+
     /* Micro-interações (sem hover-lift na galeria: dentro de trilho com
        overflow-x o translateY clipa a sombra, e o card já é superfície de
        arrasto do antes/depois) */
@@ -586,7 +612,6 @@
     .testi-card:nth-child(odd) { transform: rotate(-1.3deg); }
     .testi-card:nth-child(even) { transform: rotate(1.1deg); }
     .testi-card:hover { transform: rotate(0deg); }
-    .testi-card img { filter: drop-shadow(0 12px 22px rgba(68,42,30,0.16)); }
 
     /* CTAs — repouso neutro, ação vinho */
     .header-cta {
@@ -822,7 +847,10 @@
       <div class="testi-track hide-scrollbar">
         <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="6">
           <div class="testi-card">
-            <img src="{{ t.src }}" alt="Depoimento de paciente" loading="lazy" decoding="async" style="width:100%; height:auto; display:block; object-fit:contain;">
+            <div class="balao">
+              <p class="balao-texto">{{ t.texto }}</p>
+              <div class="balao-meta">{{ t.hora }}</div>
+            </div>
           </div>
         </sc-for>
       </div>
@@ -891,6 +919,10 @@
         <p style="margin:0;">Atendimento apenas com horário agendado</p>
       </div>
     </div>
+    <div style="max-width:760px; margin:44px auto 0;">
+      <iframe class="mapa" src="https://www.google.com/maps?q=Rua%20700%2C%20489%2C%20Centro%2C%20Balne%C3%A1rio%20Cambori%C3%BA%2C%20SC%2088330-620&amp;output=embed" loading="lazy" title="Mapa — consultório da Dra. Tifany Schmidt" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <p style="margin:10px 0 0; font-size:13px;"><a href="https://www.google.com/maps/search/?api=1&amp;query=Rua%20700%2C%20489%2C%20Centro%2C%20Balne%C3%A1rio%20Cambori%C3%BA%2C%20SC" target="_blank" rel="noopener">Como chegar ↗</a></p>
+    </div>
     <div style="max-width:760px; margin:40px auto 20px; border-top:1px solid rgba(244,240,233,0.2);"></div>
     <p style="max-width:760px; margin:0 auto; text-align:center; color:rgba(244,240,233,0.75); font-size:13px;">Dra. Tifany Schmidt · Biomédica Esteta · CRBM-5: 014010</p>
   </footer>
@@ -945,13 +977,16 @@ function getRes(id, fallback) {
   return (typeof window !== "undefined" && window.__resources && window.__resources[id]) || fallback;
 }
 
-const TESTIMONIALS = [
-  getRes("balao1", "assets/balao-01-atendimento.png"),
-  getRes("balao2", "assets/balao-02-toxina.png"),
-  getRes("balao3", "assets/balao-03-limpeza.png"),
-  getRes("balao4", "assets/balao-04-acolhimento.png"),
-  getRes("balao5", "assets/balao-05-melasma.png"),
-  getRes("balao6", "assets/balao-06-recomendacao.png"),
+// Transcrições FIÉIS dos prints de WhatsApp (originais em
+// originais-depoimentos/). Hora é a do print. NUNCA editar ou "melhorar"
+// o texto — depoimento é da paciente, não nosso.
+const DEPOIMENTOS = [
+  { hora: "20:08", texto: "Fiz meu botox com a Dra. e não poderia estar mais satisfeita com o resultado. O efeito ficou super natural, exatamente como eu queria!!! Mantendo minhas expressões, mas suavizando as linhas.\n\nDurante todo o atendimento ela foi extremamente querida, explicou tudo, tirou minhas dúvidas e me passou muita segurança. Além da técnica impecável, o cuidado e o carinho com o paciente fazem toda a diferença.\n\nCom certeza voltarei e recomendo para quem procura um resultado bonito e natural 💖" },
+  { hora: "20:03", texto: "Fiz uma limpeza de pele com a Dra. Tif e AMEI a experiência. Desde o primeiro contato fui muito bem atendida e me senti acolhida. Ela explicou cada etapa do procedimento com muita calma, quis entender sobre a minha pele antes de qualquer coisa... Muito cuidadosa.\n\nO atendimento foi extremamente relaxante (já tive experiências com limpezas que quase m*rri de tanta dor) ela tem mãos de fada!!! O ambiente é super agradável e o resultado ficou excelente. Minha pele ficou muito mais bonita e eu saí me sentindo muito bem. Dá para perceber o carinho e o profissionalismo em cada detalhe. Recomendo de olhos fechados! Fora o pós procedimento, acompanhamento de perto... Enfim, só elogios 💙" },
+  { hora: "14:06", texto: "Dra Tifany, estou mandando essa mensagem pra agradecer pelo seu atendimento impecável novamente. Todo o carinho e atenção que você proporciona aos seus pacientes são excepcionais e fazem a diferença.\n\nMe senti extremamente acolhida e cuidada na sua clínica, toda a minha jornada como paciente foi um espetáculo. Seu trabalho é maravilhoso, estou ansiosa para as próximas etapas do meu tratamento com a certeza de que escolhi a melhor profissional para cuidar de mim" },
+  { hora: "08:38", texto: "Olá!!! Dra. Tifany\nPassando aqui pra dizer que amei tudo, atendendo, ambiente super agradável e tranquilo..\nVocê Dra. de uma delicadeza incrível..\nO procedimento deu um resultado maravilhoso..eu achava que meu melasma não tinha jeito...minha pele ta maravilhosa...obrigada linda...bjusss 😘😘😘" },
+  { hora: "07:52", texto: "@ Dra tifany Schimidt\nUma excelente profissional super recomendo\nTrabalho maravilhoso tô super feliz com o procedimento feito por ela o espaço muito aconchegante obrigado Dra tifany trabalho maravilhoso 🥰" },
+  { hora: "16:50", texto: "Oii Tif, boa tarde, tudo bem?\n\nfoi incrível seu atendimento, você é muito atenciosa e esclareceu super as minhas dúvidas!!\n\ntens um feeling muito bom para lidar com pessoas, difícil isso hoje em dia, não tenho o que reclamar, foi uma ótima experiência ❤️" },
 ];
 
 class Component extends DCLogic {
@@ -984,6 +1019,17 @@ class Component extends DCLogic {
     ];
     this._handleMove = this._handleMove.bind(this);
     this._handleUp = this._handleUp.bind(this);
+
+    // Conversão: todo clique em link do WhatsApp vira evento GA4 com a origem
+    // (header, hero, flutuante...). No-op enquanto o gtag não estiver ativo.
+    this._onCtaClick = (e) => {
+      const a = e.target && e.target.closest ? e.target.closest('a[href*="wa.me"]') : null;
+      if (!a || typeof window.gtag !== "function") return;
+      const nomes = { "header-cta": "header", "hero-cta": "hero", "float-cta": "flutuante", "mobile-cta": "sticky_mobile", "pre-cta-btn": "pre_footer", "panel-link": "painel_procedimento" };
+      const origem = String(a.className || "").split(/\s+/).map((c) => nomes[c]).find(Boolean) || "footer";
+      window.gtag("event", "whatsapp_click", { origem: origem });
+    };
+    document.addEventListener("click", this._onCtaClick, true);
 
     // Fiação imperativa: ref="{{ }}" em elemento nativo NÃO dispara neste
     // runtime (setas e reveals do artifact original nasceram mortos por isso),
@@ -1037,6 +1083,7 @@ class Component extends DCLogic {
     window.removeEventListener("pointermove", this._handleMove);
     window.removeEventListener("pointerup", this._handleUp);
     window.removeEventListener("scroll", this._onScroll);
+    document.removeEventListener("click", this._onCtaClick, true);
     clearTimeout(this._wireTimer);
     if (this._galleryEl) this._galleryEl.removeEventListener("scroll", this._onGalScroll);
     if (this._testimonialsEl) this._testimonialsEl.removeEventListener("scroll", this._onTestiScroll);
@@ -1141,8 +1188,8 @@ class Component extends DCLogic {
       }),
     }));
 
-    const testimonials = TESTIMONIALS.map((src) => ({ src }));
-    const testimonialDots = TESTIMONIALS.map((_, i) => ({
+    const testimonials = DEPOIMENTOS.map((d) => ({ texto: d.texto, hora: d.hora }));
+    const testimonialDots = DEPOIMENTOS.map((_, i) => ({
       color: this.state.activeTestimonial === i ? "#6e2a2e" : "rgba(68,42,30,0.25)",
     }));
 
