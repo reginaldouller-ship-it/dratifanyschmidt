@@ -1042,7 +1042,12 @@ class Component extends DCLogic {
     };
     this._onTestiScroll = () => {
       const el = this._testimonialsEl;
-      const idx = Math.round(el.scrollLeft / el.clientWidth);
+      const passo = this._testiPasso() || el.clientWidth;
+      let idx = Math.round(el.scrollLeft / passo);
+      // encostou no fim do trilho = último card ativo, senão os dots finais
+      // nunca acendem no desktop (o trilho para antes de centralizá-los)
+      if (el.scrollLeft >= el.scrollWidth - el.clientWidth - 2) idx = DEPOIMENTOS.length - 1;
+      idx = Math.max(0, Math.min(DEPOIMENTOS.length - 1, idx));
       if (idx !== this.state.activeTestimonial) this.setState({ activeTestimonial: idx });
     };
     let tentativas = 0;
@@ -1140,9 +1145,19 @@ class Component extends DCLogic {
     this._galleryEl.scrollBy({ left: dir * this._galleryEl.clientWidth, behavior: "smooth" });
   }
 
+  // Um CARD por clique — rolar clientWidth pulava 2-3 cards no desktop e os
+  // do meio nunca eram lidos. O passo = largura real do card + gap do trilho.
+  _testiPasso() {
+    const el = this._testimonialsEl;
+    if (!el) return 0;
+    const card = el.querySelector(".testi-card");
+    const gap = parseFloat(getComputedStyle(el).columnGap) || 24;
+    return card ? card.getBoundingClientRect().width + gap : el.clientWidth;
+  }
+
   scrollTestimonials(dir) {
     if (!this._testimonialsEl) return;
-    this._testimonialsEl.scrollBy({ left: dir * this._testimonialsEl.clientWidth, behavior: "smooth" });
+    this._testimonialsEl.scrollBy({ left: dir * this._testiPasso(), behavior: "smooth" });
   }
 
   renderVals() {
