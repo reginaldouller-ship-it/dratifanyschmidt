@@ -603,6 +603,40 @@ window.GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
     .mapa { width: 100%; height: 240px; border: 0; border-radius: 14px; display: block; filter: grayscale(1) contrast(1.05); transition: filter 0.3s ease; }
     .mapa:hover { filter: none; }
 
+    /* ── Quiz "Por onde começar?" ──
+       Resultado NÃO é prescrição: é ponto de partida pra avaliação, e o CTA
+       leva o resultado escrito na mensagem do WhatsApp. */
+    .quiz-card { position: relative; max-width: 640px; margin: 0 auto; border: 1px solid rgba(244,240,233,0.16); border-radius: 14px; padding: 36px 28px; overflow: hidden; min-height: 320px; }
+    .quiz-svg { position: absolute; top: 20px; right: 22px; width: 118px; height: auto; opacity: 0.32; pointer-events: none; }
+    .quiz-svg .tr { stroke: #f4f0e9; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+    /* desenho a traço quando a seção revela, peça por peça */
+    .reveal.is-on .quiz-svg .tr { animation: quizDraw 1.1s ease forwards; }
+    .reveal.is-on .quiz-svg .tr:nth-child(2) { animation-delay: 0.25s; }
+    .reveal.is-on .quiz-svg .tr:nth-child(3) { animation-delay: 0.45s; }
+    .reveal.is-on .quiz-svg .tr:nth-child(4) { animation-delay: 0.65s; }
+    .reveal.is-on .quiz-svg .tr:nth-child(5) { animation-delay: 0.8s; }
+    .reveal.is-on .quiz-svg .tr:nth-child(6) { animation-delay: 0.9s; }
+    .reveal.is-on .quiz-svg .tr:nth-child(7) { animation-delay: 1.0s; }
+    .reveal.is-on .quiz-svg .tr:nth-child(8) { animation-delay: 1.15s; }
+    .reveal.is-on .quiz-svg .tr:nth-child(9) { animation-delay: 1.3s; }
+    @keyframes quizDraw { to { stroke-dashoffset: 0; } }
+    .quiz-contador { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 300; color: rgba(244,240,233,0.55); margin-bottom: 10px; }
+    .quiz-barra { height: 2px; background: rgba(244,240,233,0.15); border-radius: 2px; margin-bottom: 28px; }
+    .quiz-barra i { display: block; height: 100%; border-radius: 2px; background: #f4f0e9; transition: width 0.35s ease; }
+    .quiz-pergunta { margin: 0 0 22px; font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: clamp(22px, 3vw, 28px); color: #f4f0e9; max-width: 420px; }
+    .quiz-opts { display: grid; gap: 10px; max-width: 460px; }
+    .quiz-chip { text-align: left; background: transparent; border: 1px solid rgba(244,240,233,0.28); color: #f4f0e9; border-radius: 10px; padding: 14px 16px; font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 15px; cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease; }
+    .quiz-chip:hover { background: var(--vinho); border-color: var(--vinho); transform: translateX(4px); }
+    .quiz-res-eyebrow { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 300; color: rgba(244,240,233,0.6); margin-bottom: 6px; }
+    .quiz-res-grupo { font-family: 'Bodoni Moda', serif; font-style: italic; font-size: 15px; color: rgba(244,240,233,0.65); margin-bottom: 10px; }
+    .quiz-res-nome { margin: 0 0 12px; font-family: 'Bodoni Moda', serif; font-weight: 400; font-size: clamp(26px, 3.6vw, 34px); color: #f4f0e9; }
+    .quiz-res-detalhe { margin: 0 0 16px; font-weight: 300; font-size: 15px; line-height: 1.65; color: rgba(244,240,233,0.8); max-width: 480px; }
+    .quiz-res-nota { margin: 0 0 24px; font-size: 12.5px; font-weight: 300; font-style: italic; color: rgba(244,240,233,0.55); max-width: 440px; }
+    .quiz-refazer { background: none; border: none; color: rgba(244,240,233,0.6); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; margin-left: 16px; font-size: 12px; font-family: 'Montserrat', sans-serif; font-weight: 300; }
+    .quiz-refazer:hover { color: rgba(244,240,233,0.9); }
+    @keyframes quizSwapA { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    @keyframes quizSwapB { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
     /* Micro-interações (sem hover-lift na galeria: dentro de trilho com
        overflow-x o translateY clipa a sombra, e o card já é superfície de
        arrasto do antes/depois) */
@@ -664,6 +698,9 @@ window.GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
       .gallery-item:hover, .pre-cta-btn:hover { transform: none; }
       .hero-media img { animation: none; }
       .panel-swap { animation: none !important; }
+      .quiz-swap { animation: none !important; }
+      .quiz-svg .tr { animation: none; stroke-dashoffset: 0; }
+      .quiz-chip:hover { transform: none; }
     }
   </style>
 </helmet>
@@ -799,6 +836,52 @@ window.GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
           <a class="panel-link" href="{{ whatsappUrl }}" target="_blank" rel="noopener">Agendar avaliação →</a>
         </div>
       </aside>
+    </div>
+  </section>
+
+  <!-- QUIZ: POR ONDE COMEÇAR? -->
+  <section class="texture-cafe reveal reveal-stagger" style="padding:88px 20px; color:#f4f0e9;">
+    <div style="max-width:720px; margin:0 auto 40px;">
+      <div class="sec-eyebrow sec-eyebrow--dark">Leva um minuto</div>
+      <h2 class="titulo-encaixe" style="margin:0; font-family:'Bodoni Moda', serif; font-weight:400; font-size:clamp(28px,4.5vw,48px); color:#f4f0e9;"><span class="linha1">Por onde</span><span class="linha2">começar?</span></h2>
+    </div>
+    <div class="quiz-card">
+      <svg class="quiz-svg" viewBox="0 0 160 64" aria-hidden="true">
+        <line class="tr" pathLength="1" x1="6" y1="32" x2="36" y2="32"></line>
+        <line class="tr" pathLength="1" x1="36" y1="25" x2="36" y2="39"></line>
+        <rect class="tr" pathLength="1" x="40" y="19" width="68" height="26" rx="5"></rect>
+        <line class="tr" pathLength="1" x1="54" y1="23" x2="54" y2="30"></line>
+        <line class="tr" pathLength="1" x1="68" y1="23" x2="68" y2="30"></line>
+        <line class="tr" pathLength="1" x1="82" y1="23" x2="82" y2="30"></line>
+        <line class="tr" pathLength="1" x1="108" y1="32" x2="136" y2="32"></line>
+        <line class="tr" pathLength="1" x1="136" y1="21" x2="136" y2="43"></line>
+        <path class="tr" pathLength="1" d="M12 8 c0 0 5.5 6.5 5.5 10.2 a5.5 5.5 0 1 1 -11 0 C6.5 14.5 12 8 12 8 Z"></path>
+      </svg>
+      <div style="display: {{ quizPerguntaDisplay }};">
+        <div class="quiz-contador">{{ quizContador }}</div>
+        <div class="quiz-barra"><i style="width: {{ quizProg }};"></i></div>
+      </div>
+      <div class="quiz-swap" style="animation: {{ quizAnim }};">
+        <div style="display: {{ quizPerguntaDisplay }};">
+          <h3 class="quiz-pergunta">{{ quizPergunta }}</h3>
+          <div class="quiz-opts">
+            <sc-for list="{{ quizOpts }}" as="o" hint-placeholder-count="4">
+              <button class="quiz-chip" sc-camel-on-click="{{ o.pick }}">{{ o.t }}</button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display: {{ quizResultadoDisplay }};">
+          <div class="quiz-res-eyebrow">Seu ponto de partida</div>
+          <div class="quiz-res-grupo">{{ quizResGrupo }}</div>
+          <h3 class="quiz-res-nome">{{ quizResNome }}</h3>
+          <p class="quiz-res-detalhe">{{ quizResDetalhe }}</p>
+          <p class="quiz-res-nota">Isso não é diagnóstico — é conversa puxada. Quem define o protocolo é a avaliação.</p>
+          <div>
+            <a class="pre-cta-btn" href="{{ quizResWhats }}" target="_blank" rel="noopener">Levar pra avaliação</a>
+            <button class="quiz-refazer" sc-camel-on-click="{{ quizReset }}">Refazer o teste</button>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -974,6 +1057,43 @@ const FAQS = [
   { id: "q6", q: "Vocês atendem em qualquer horário?", a: "O atendimento é sempre com horário marcado, e a gente encaixa o melhor horário para você. Fale comigo no WhatsApp que a gente resolve." },
 ];
 
+// Quiz "Por onde começar?" — cada resposta pontua procedimentos (ids de
+// GROUPS) ou "aval" (avaliação completa). O resultado é ponto de partida,
+// nunca prescrição: o texto do resultado e a nota deixam isso explícito.
+const QUIZ = [
+  { q: "O que você quer valorizar primeiro?", opts: [
+    { t: "Contornos e volume no lugar certo", pts: { p2: 2 } },
+    { t: "Expressão mais descansada", pts: { p3: 2 } },
+    { t: "Firmeza e viço da pele", pts: { p4: 2 } },
+    { t: "Pele limpa, lisa e uniforme", pts: { p5: 1, p8: 1 } },
+  ] },
+  { q: "O que a sua pele anda pedindo?", opts: [
+    { t: "Uma limpeza caprichada", pts: { p5: 2 } },
+    { t: "Textura mais lisinha", pts: { p7: 1, p8: 1 } },
+    { t: "Segurar a firmeza com o tempo", pts: { p4: 2 } },
+    { t: "Suavizar linhas de expressão", pts: { p3: 2 } },
+  ] },
+  { q: "Seu ritmo ideal de cuidado é…", opts: [
+    { t: "Resultado que aparece logo", pts: { p5: 1, p8: 1, p2: 1 } },
+    { t: "Construído ao longo das semanas", pts: { p4: 1, p7: 1 } },
+    { t: "Manutenção periódica, sem drama", pts: { p3: 1 } },
+    { t: "Não sei — quero o certo pro meu caso", pts: { aval: 2 } },
+  ] },
+  { q: "Pra fechar: o clima do momento é…", opts: [
+    { t: "Me preparar pra uma data especial", pts: { p5: 1, p8: 1 } },
+    { t: "Investir no longo prazo", pts: { p4: 1, p7: 1 } },
+    { t: "Refinar detalhes do rosto", pts: { p2: 1, p3: 1 } },
+    { t: "Começar do zero, com orientação", pts: { aval: 2 } },
+  ] },
+];
+
+const QUIZ_AVAL = {
+  id: "aval",
+  name: "Avaliação completa",
+  grupo: "O começo certo",
+  detail: "Seu momento pede olhar clínico antes de qualquer indicação — e é exatamente assim que o atendimento começa por aqui. Sem pacote, sem pressa: a gente entende o seu rosto e monta o caminho junto.",
+};
+
 function getRes(id, fallback) {
   return (typeof window !== "undefined" && window.__resources && window.__resources[id]) || fallback;
 }
@@ -1000,6 +1120,9 @@ class Component extends DCLogic {
     activeProc: 0,
     procFlip: false,
     activeTestimonial: 0,
+    quizStep: 0,
+    quizAnswers: [],
+    quizFlip: false,
   };
 
   componentDidMount() {
@@ -1130,6 +1253,42 @@ class Component extends DCLogic {
     this.setState({ positions });
   }
 
+  _quizResultado(respostas) {
+    const score = {};
+    respostas.forEach((oi, qi) => {
+      const pts = QUIZ[qi] && QUIZ[qi].opts[oi] ? QUIZ[qi].opts[oi].pts : {};
+      for (const k in pts) score[k] = (score[k] || 0) + pts[k];
+    });
+    // empate resolve para "aval" primeiro — a resposta mais honesta
+    const ordem = ["aval", "p5", "p3", "p2", "p4", "p7", "p8"];
+    let win = "aval", best = -1;
+    for (const k of ordem) {
+      const v = score[k] || 0;
+      if (v > best) { best = v; win = k; }
+    }
+    if (win === "aval") return QUIZ_AVAL;
+    for (const g of GROUPS) {
+      const hit = g.items.find((it) => it.id === win);
+      if (hit) return { ...hit, grupo: g.title };
+    }
+    return QUIZ_AVAL;
+  }
+
+  answerQuiz(oi) {
+    const passo = this.state.quizStep;
+    if (passo >= QUIZ.length) return;
+    const respostas = [...this.state.quizAnswers];
+    respostas[passo] = oi;
+    this.setState((s) => ({ quizAnswers: respostas, quizStep: passo + 1, quizFlip: !s.quizFlip }));
+    if (passo + 1 === QUIZ.length && typeof window.gtag === "function") {
+      window.gtag("event", "quiz_resultado", { resultado: this._quizResultado(respostas).name });
+    }
+  }
+
+  resetQuiz() {
+    this.setState((s) => ({ quizStep: 0, quizAnswers: [], quizFlip: !s.quizFlip }));
+  }
+
   setActiveProc(i) {
     if (i === this.state.activeProc) return;
     // procFlip alterna o animation-name do painel (procSwapA/B) para o fade
@@ -1187,6 +1346,8 @@ class Component extends DCLogic {
     const procsFlat = [];
     GROUPS.forEach((g) => g.items.forEach((it) => procsFlat.push({ ...it, grupo: g.title })));
     const procAtivo = Math.min(this.state.activeProc, procsFlat.length - 1);
+    const quizFim = this.state.quizStep >= QUIZ.length;
+    const quizRes = quizFim ? this._quizResultado(this.state.quizAnswers) : null;
     let procIdx = 0;
     const groups = GROUPS.map((g) => ({
       ...g,
@@ -1226,6 +1387,20 @@ class Component extends DCLogic {
       groups,
       activeProc: { ...procsFlat[procAtivo], num: String(procAtivo + 1).padStart(2, "0") },
       panelAnim: (this.state.procFlip ? "procSwapA" : "procSwapB") + " 0.4s ease both",
+      quizPerguntaDisplay: quizFim ? "none" : "block",
+      quizResultadoDisplay: quizFim ? "block" : "none",
+      quizContador: quizFim ? "" : "Pergunta " + (this.state.quizStep + 1) + " de " + QUIZ.length,
+      quizProg: (Math.min(this.state.quizStep, QUIZ.length) / QUIZ.length) * 100 + "%",
+      quizPergunta: quizFim ? "" : QUIZ[this.state.quizStep].q,
+      quizOpts: quizFim ? [] : QUIZ[this.state.quizStep].opts.map((o, oi) => ({ t: o.t, pick: () => this.answerQuiz(oi) })),
+      quizAnim: (this.state.quizFlip ? "quizSwapA" : "quizSwapB") + " 0.4s ease both",
+      quizResGrupo: quizRes ? quizRes.grupo : "",
+      quizResNome: quizRes ? quizRes.name : "",
+      quizResDetalhe: quizRes ? quizRes.detail : "",
+      quizResWhats: quizRes
+        ? "https://wa.me/5547997722437?text=" + encodeURIComponent("Oi Dra. Tifany! Fiz o teste do site e meu ponto de partida deu " + quizRes.name + ". Quero agendar uma avaliação!")
+        : WHATSAPP_URL,
+      quizReset: () => this.resetQuiz(),
       steps: STEPS,
       faqItems,
       testimonials,
