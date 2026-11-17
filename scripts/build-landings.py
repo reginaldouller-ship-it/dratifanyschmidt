@@ -11,12 +11,12 @@ pages = [
 ]
 for page in pages:
     url = 'https://dratifanyschmidt.com.br/'+page['slug']+'/'
-    message = "Oi Dra. Tifany! Gostaria de agendar uma consulta. Vi que custa R$ 200, com valor abatido no procedimento posterior."
+    message = "Oi Dra. Tifany! Gostaria de saber mais sobre a consulta e os horários disponíveis."
     wa = 'https://wa.me/5547997722437?text='+quote(message)
     faq = [
-      ('Quanto custa a consulta?', 'A consulta custa R$ 200. Esse valor é abatido caso você realize o procedimento posteriormente. O valor do procedimento é informado após a avaliação individual.'),
+      ('Como agendar minha consulta?', 'Fale pelo WhatsApp para conhecer as condições da consulta e consultar os horários disponíveis. Você pode tirar suas dúvidas antes de agendar.'),
       ('Posso fazer o procedimento no mesmo dia?', 'Existe essa possibilidade, conforme indicação após a avaliação, disponibilidade de horário e sua decisão. Avise no agendamento se tiver interesse, para organizarmos o tempo necessário.'),
-      ('Preciso decidir no dia da consulta?', 'Não. Você pode tirar suas dúvidas e decidir com calma. Não é necessário realizar o procedimento no mesmo dia para ter o valor da consulta abatido posteriormente.'),
+      ('Preciso decidir no dia da consulta?', 'Não. Você pode tirar suas dúvidas e decidir com calma. Não é necessário realizar o procedimento no mesmo dia.'),
       (page['extra_q'], page['extra_a']),
       ('Onde fica o consultório?', 'Rua 700, nº 489, sala 2404, Ed. Benvenutti Business Center — C.Cliniq, Centro, Balneário Camboriú/SC. CEP 88330-620. Atendimento com hora marcada.'),
     ]
@@ -25,7 +25,7 @@ for page in pages:
     html = f'''<!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{page['title']} | Dra. Tifany Schmidt</title>
-<meta name="description" content="{escape(page['intro'],quote=True)} Consulta de R$ 200, com abatimento no procedimento posterior.">
+<meta name="description" content="{escape(page['intro'],quote=True)} Atendimento com hora marcada em Balneário Camboriú.">
 <link rel="canonical" href="{url}"><link rel="icon" href="/assets/favicon.png">
 <meta property="og:title" content="{page['title']} | Dra. Tifany Schmidt"><meta property="og:description" content="Avaliação individual, com hora marcada, no Centro de Balneário Camboriú.">
 <meta property="og:url" content="{url}"><meta property="og:type" content="website"><meta property="og:image" content="https://dratifanyschmidt.com.br/assets/og-image.jpg">
@@ -33,7 +33,7 @@ for page in pages:
 <script type="application/ld+json">{json.dumps(structured,ensure_ascii=False)}</script></head><body>
 <header><a href="/" aria-label="Dra. Tifany Schmidt — página inicial"><img src="/assets/logo-lettering-creme.png" alt="Dra. Tifany Schmidt"></a><a class="header-cta" href="{wa}" target="_blank" rel="noopener">Agendar pelo WhatsApp</a></header>
 <main><section class="hero"><div class="wrap hero-grid"><div class="hero-copy"><p class="eyebrow">{page['eyebrow']}</p><h1>{page['heading']}</h1><p class="lead">{page['intro']}</p>
-<p class="offer"><strong>Consulta de R$ 200</strong><br>Valor abatido caso você realize o procedimento posteriormente.</p><a class="cta hero-cta" href="{wa}" target="_blank" rel="noopener">{page['action']}</a><p class="note">Biomédica esteta · CRBM-5 014010<br>Atendimento com hora marcada, no Centro de Balneário Camboriú.</p></div>
+<p class="offer"><strong>Um plano pensado para você</strong><br>Esclareça suas dúvidas e decida com tranquilidade.</p><a class="cta hero-cta" href="{wa}" target="_blank" rel="noopener">{page['action']}</a><p class="note">Biomédica esteta · CRBM-5 014010<br>Atendimento com hora marcada, no Centro de Balneário Camboriú.</p></div>
 <figure style="margin:0"><img class="hero-photo" src="/assets/foto-hero.jpg" alt="Retrato da Dra. Tifany Schmidt" width="800" height="1067"></figure></div></section>
 <section class="section"><div class="wrap"><p class="eyebrow">Como funciona</p><h2>{page['about']}</h2><p style="max-width:800px">{page['detail']}</p><div class="cards">
 <article class="card"><span>01 · CONVERSA</span><h3>Seus objetivos e seu histórico</h3><p>Um momento para entender o que você busca e esclarecer suas dúvidas.</p></article>
