@@ -5,6 +5,18 @@ from bs4 import BeautifulSoup
 ROOT = Path(__file__).resolve().parents[1]
 
 class SiteTests(unittest.TestCase):
+    def test_static_descriptions_are_visible_on_desktop(self):
+        html = (ROOT/'index.html').read_text(encoding='utf-8')
+        self.assertTrue(bool(re.search(r'#static-content \.proc-desc\s*\{[^}]*display:block!important', html)))
+
+    def test_whatsapp_does_not_include_quiz_or_procedure_inquiry(self):
+        from urllib.parse import urlparse, parse_qs
+        for file in [ROOT/'index.html', *ROOT.glob('*-balneario-camboriu/index.html')]:
+            soup = BeautifulSoup(file.read_text(encoding='utf-8'),'html.parser')
+            for a in soup.select('a[href^="https://wa.me/"]'):
+                message=parse_qs(urlparse(a['href']).query).get('text',[''])[0].lower()
+                self.assertFalse(any(term in message for term in ['quiz','toxina','lábios','labial','preenchimento','ponto de partida']))
+
     def test_home_works_without_javascript(self):
         soup = BeautifulSoup((ROOT / 'index.html').read_text(encoding='utf-8'), 'html.parser')
         for el in soup.select('script, template'): el.decompose()

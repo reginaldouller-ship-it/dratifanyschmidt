@@ -11,7 +11,7 @@ pages = [
 ]
 for page in pages:
     url = 'https://dratifanyschmidt.com.br/'+page['slug']+'/'
-    message = f"Oi Dra. Tifany! Gostaria de agendar {page['subject']}. Vi que a consulta custa R$ 200, com valor abatido no procedimento posterior."
+    message = "Oi Dra. Tifany! Gostaria de agendar uma consulta. Vi que custa R$ 200, com valor abatido no procedimento posterior."
     wa = 'https://wa.me/5547997722437?text='+quote(message)
     faq = [
       ('Quanto custa a consulta?', 'A consulta custa R$ 200. Esse valor é abatido caso você realize o procedimento posteriormente. O valor do procedimento é informado após a avaliação individual.'),

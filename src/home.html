@@ -1482,7 +1482,7 @@ class Component extends DCLogic {
 
     const faqItems = FAQS.map((f) => {
       const open = this.state.faqOpen === f.id;
-      return { ...f, symbol: open ? "–" : "+", maxHeight: open ? "200px" : "0px", toggle: () => this.toggleFaq(f.id) };
+      return { ...f, symbol: open ? "–" : "+", maxHeight: open ? "none" : "0px", toggle: () => this.toggleFaq(f.id) };
     });
 
     const procsFlat = [];
@@ -1503,7 +1503,7 @@ class Component extends DCLogic {
           mh: on ? "240px" : "0px",
           op: on ? 1 : 0,
           pick: () => this.setActiveProc(i),
-          whats: "https://wa.me/5547997722437?text=" + encodeURIComponent("Oi Dra. Tifany! Me interessei por " + it.name + " e quero agendar uma avaliação."),
+          whats: WHATSAPP_URL,
         };
       }),
     }));
@@ -1529,7 +1529,7 @@ class Component extends DCLogic {
         " / " + String(CASE_FILES.length).padStart(2, "0"),
       groups,
       activeProc: { ...procsFlat[procAtivo], num: String(procAtivo + 1).padStart(2, "0") },
-      activeProcWhats: "https://wa.me/5547997722437?text=" + encodeURIComponent("Oi Dra. Tifany! Me interessei por " + procsFlat[procAtivo].name + " e quero agendar uma avaliação."),
+      activeProcWhats: WHATSAPP_URL,
       panelAnim: (this.state.procFlip ? "procSwapA" : "procSwapB") + " 0.4s ease both",
       quizPerguntaDisplay: quizFim ? "none" : "block",
       quizResultadoDisplay: quizFim ? "block" : "none",
@@ -1542,7 +1542,7 @@ class Component extends DCLogic {
       quizResNome: quizRes ? quizRes.name : "",
       quizResDetalhe: quizRes ? quizRes.detail : "",
       quizResWhats: quizRes
-        ? "https://wa.me/5547997722437?text=" + encodeURIComponent("Oi Dra. Tifany! Fiz o teste do site e meu ponto de partida deu " + quizRes.name + ". Quero agendar uma avaliação!")
+        ? WHATSAPP_URL
         : WHATSAPP_URL,
       quizReset: () => this.resetQuiz(),
       steps: STEPS,

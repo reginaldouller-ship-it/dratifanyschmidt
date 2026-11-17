@@ -57,7 +57,9 @@ output = output.replace('</head>', styles + '''
 <style>
 x-dc {display:none}
 #static-content .reveal,#static-content .reveal-stagger>* {opacity:1!important;transform:none!important}
-#static-content .proc-desc {max-height:none!important;opacity:1!important}
+#static-content .proc-desc {display:block!important;max-height:none!important;opacity:1!important}
+#static-content .proc-panel {display:none!important}
+#static-content .oque-grid {grid-template-columns:1fr!important}
 #static-content .quiz-section {display:none}
 #static-content .gallery-grid,#static-content .testi-track {overflow-x:auto}
 </style></head>''')
